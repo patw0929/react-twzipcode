@@ -42,14 +42,20 @@
 
         <hr>
 
+        <h2>安裝</h2>
+
+        <pre><code>npm install --save react-twzipcode</code></pre>
+
+        <hr>
+
         <h2>語法</h2>
 
-        <pre><code class="e4x">'use strict';
+        <pre><code class="javascript">'use strict';
 
-var React = require('react');
-var TWzipcode = require('./app/main.jsx');
+var React = require('react'),
+  TWzipcode = require('react-twzipcode');
 
-React.render(&lt;TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']} /&gt;, document.querySelector('.main'));</code></pre>
+React.render(&lt;TWzipcode css={['county-sel', 'district-sel', 'zipcode']} /&gt;, document.querySelector('.main'));</code></pre>
 
         <hr>
 

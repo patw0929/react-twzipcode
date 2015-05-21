@@ -7,15 +7,21 @@ Rewrite [jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode) in Reac
 
 ## Demo
 
-http://patw0929.github.io/React-TWzipcode/build/index.html
+http://patw0929.github.io/React-TWzipcode/build/
+
+## Install
+
+```
+npm install --save react-twzipcode
+```
 
 ## Usage
 
 ```jsx
 'use strict';
 
-var React = require('react');
-var TWzipcode = require('./app/main.jsx');
+var React = require('react'),
+  TWzipcode = require('react-twzipcode');
 
 React.render(<TWzipcode css={['county-sel', 'district-sel', 'zipcode']} />, document.querySelector('.main'));
 ```
