@@ -1,5 +1,5 @@
 node_modules
 bower_components
 .DS_Store
-npm-debug.txt
+npm-debug.log
 
