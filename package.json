@@ -1,0 +1,29 @@
+{
+  "name": "React-TWzipcode",
+  "version": "0.0.1",
+  "description": "Rewrite jQuery-TWzipcode in React.js.",
+  "main": "app/main.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --port 2992 --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/patw0929/React-TWzipcode.git"
+  },
+  "author": "patw <patw.hi@gmail.com> (http://patw.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patw0929/React-TWzipcode/issues"
+  },
+  "homepage": "https://github.com/patw0929/React-TWzipcode",
+  "dependencies": {
+    "json-loader": "^0.5.1",
+    "jsx-loader": "^0.13.2",
+    "node-libs-browser": "^0.5.0",
+    "react": "^0.13.3",
+    "webpack": "^1.9.7",
+    "webpack-dev-server": "^1.8.2"
+  }
+}
+
