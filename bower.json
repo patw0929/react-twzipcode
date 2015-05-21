@@ -1,0 +1,25 @@
+{
+  "name": "React-TWzipcode",
+  "version": "0.0.1",
+  "homepage": "https://github.com/patw0929/React-TWzipcode",
+  "authors": [
+    "patw <patw.hi@gmail.com>"
+  ],
+  "description": "Rewrite jQuery-TWzipcode in React.js.",
+  "main": "main/main.jsx",
+  "keywords": [
+    "TWzipcode",
+    "zipcode",
+    "React",
+    "Taiwan"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
+
