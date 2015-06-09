@@ -26,6 +26,26 @@ var React = require('react'),
 React.render(<TWzipcode css={['county-sel', 'district-sel', 'zipcode']} />, document.querySelector('.main'));
 ```
 
+## Development
+
+### Install npm packages
+
+```
+npm install
+```
+
+### Development Server
+
+```
+npm run dev-server
+```
+
+### Compile
+
+```
+webpack
+```
+
 ## License
 
 MIT
