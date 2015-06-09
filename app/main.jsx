@@ -159,6 +159,10 @@ var TWzipcode = React.createClass({
       district: districts[0],
       districts: districts,
       zipcode: data[county][districts[0]]
+    }, function () {
+      if (typeof this.props.handleChangeCounty === 'function') {
+        this.props.handleChangeCounty(this.state);
+      }
     });
   },
   changeDistrict: function (district) {
@@ -170,6 +174,10 @@ var TWzipcode = React.createClass({
       district: district,
       districts: this.state.districts,
       zipcode: zipCode
+    }, function () {
+      if (typeof this.props.handleChangeDistrict === 'function') {
+        this.props.handleChangeDistrict(this.state);
+      }
     });
   },
   changeZipcode: function (zipcode) {
@@ -199,6 +207,10 @@ var TWzipcode = React.createClass({
       district: district,
       districts: districts,
       zipcode: zipcode
+    }, function () {
+      if (typeof this.props.handleChangeZipcode === 'function') {
+        this.props.handleChangeZipcode(this.state);
+      }
     });
   },
   render: function () {
