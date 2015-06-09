@@ -6,7 +6,7 @@
     "patw <patw.hi@gmail.com>"
   ],
   "description": "Rewrite jQuery-TWzipcode in React.js.",
-  "main": "main/main.jsx",
+  "main": "dist/main.js",
   "keywords": [
     "TWzipcode",
     "zipcode",
