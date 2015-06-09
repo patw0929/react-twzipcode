@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var data = require('./data.json');
+var data = require('../app/data.json');
 
 var TWzipcode = React.createClass({displayName: "TWzipcode",
   getInitialState: function () {
