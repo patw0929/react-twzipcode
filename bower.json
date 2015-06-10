@@ -1,6 +1,6 @@
 {
   "name": "react-twzipcode",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "TWzipcode",
   "main": "dist/react-twzipcode.min.js",
   "homepage": "https://github.com/patw0929/react-twzipcode",
