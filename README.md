@@ -1,6 +1,6 @@
-# TWzipcode
+# React-TWzipcode
 
-__COMPONENT DESCRIPTION GOES HERE__
+Rewrite [jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode) in React.js.
 
 
 ## Demo & Examples
@@ -35,16 +35,12 @@ __EXPLAIN USAGE HERE__
 ```
 var TWzipcode = require('react-twzipcode');
 
-<TWzipcode>Example</TWzipcode>
+<TWzipcode css={['county-sel', 'district-sel', 'zipcode']}>Example</TWzipcode>
 ```
 
 ### Properties
 
-* __DOCUMENT PROPERTIES HERE__
-
-### Notes
-
-__ADDITIONAL USAGE NOTES__
+Please see the [Demo Page](http://patw0929.github.io/react-twzipcode/)
 
 
 ## Development (`src`, `lib` and the build process)
@@ -55,7 +51,7 @@ To build, watch and serve the examples (which will also watch the component sour
 
 ## License
 
-__PUT LICENSE HERE__
+MIT
 
 Copyright (c) 2015 patw.
 
