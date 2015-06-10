@@ -35,7 +35,7 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <form class="form-inline">
-              <main class="main"></main>
+              <main id="app" class="main"></main>
             </form>
           </div>
         </div>
@@ -52,10 +52,27 @@
 
         <pre><code class="javascript">'use strict';
 
-var React = require('react'),
-  TWzipcode = require('react-twzipcode');
+var React = require('react');
+var TWzipcode = require('react-twzipcode');
 
-React.render(&lt;TWzipcode css={['county-sel', 'district-sel', 'zipcode']} /&gt;, document.querySelector('.main'));</code></pre>
+var App = React.createClass({
+  handleChange (data) {
+    console.log(data);
+  },
+  render () {
+    return (
+      &lt;div&gt;
+        &lt;TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
+                   handleChangeCounty={this.handleChange}
+                   handleChangeDistrict={this.handleChange}
+                   handleChangeZipcode={this.handleChange} /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+React.render(&lt;App /&gt;, document.getElementById('app'));
+</code></pre>
 
         <hr>
 
@@ -153,8 +170,10 @@ React.render(&lt;TWzipcode css={['county-sel', 'district-sel', 'zipcode']} /&gt;
     </div>
   </div>
 
-  <script src="https://fb.me/react-0.13.3.min.js"></script>
-  <script src="./public/main.js"></script>
+  <script src="common.js"></script>
+  <script src="bundle.js"></script>
+  <script src="example.js"></script>
+
   <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
