@@ -31,9 +31,6 @@ var taskConfig = {
     ],
     scripts: [
       'example.js'
-    ],
-    less: [
-      'example.less'
     ]
   }
 
