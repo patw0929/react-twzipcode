@@ -30,8 +30,6 @@ npm install react-twzipcode --save
 
 ## Usage
 
-__EXPLAIN USAGE HERE__
-
 ```
 var TWzipcode = require('react-twzipcode');
 
