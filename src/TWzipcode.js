@@ -7,6 +7,20 @@ import District from './District';
 import ZipCode from './ZipCode';
 
 export default React.createClass({
+  propTypes: {
+    changeDistrict: React.PropTypes.func,
+    countyName: React.PropTypes.string,
+    countySel: React.PropTypes.string,
+    css: React.PropTypes.array,
+    detect: React.PropTypes.bool,
+    districtName: React.PropTypes.string,
+    districtSel: React.PropTypes.string,
+    handleChangeCounty: React.PropTypes.func,
+    handleChangeDistrict: React.PropTypes.func,
+    handleChangeZipcode: React.PropTypes.func,
+    zipcodeName: React.PropTypes.func,
+    zipcodeSel: React.PropTypes.string
+  },
   getInitialState () {
     return {
       county: '',
@@ -134,6 +148,13 @@ export default React.createClass({
       this.geoLocation();
     }
 
+    this.setInitialState(county, counties, district, districts, zipcode);
+
+    if (this.props.zipcodeSel !== '') {
+      this.changeZipcode(this.props.zipcodeSel);
+    }
+  },
+  setInitialState(county, counties, district, districts, zipcode) {
     this.setState({
       county: county,
       counties: counties,
@@ -141,10 +162,6 @@ export default React.createClass({
       districts: districts,
       zipcode: zipcode
     });
-
-    if (this.props.zipcodeSel !== '') {
-      this.changeZipcode(this.props.zipcodeSel);
-    }
   },
   changeCounty (county) {
     var districts = [];

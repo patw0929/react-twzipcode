@@ -3,6 +3,13 @@
 import React from 'react';
 
 export default React.createClass({
+  propTypes: {
+    changeDistrict: React.PropTypes.func,
+    className: React.PropTypes.string,
+    data: React.PropTypes.object,
+    defaultValue: React.PropTypes.string,
+    name: React.PropTypes.string
+  },
   onChange () {
     var currentDistrict = this.getDOMNode().value;
     this.props.changeDistrict(currentDistrict);

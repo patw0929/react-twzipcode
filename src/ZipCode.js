@@ -4,6 +4,12 @@ import React from 'react';
 import Data from './Data';
 
 export default React.createClass({
+  propTypes: {
+    changeZipcode: React.PropTypes.func,
+    className: React.PropTypes.string,
+    data: React.PropTypes.object,
+    name: React.PropTypes.string
+  },
   onChange () {
     var zipCode = this.getDOMNode().value,
       i, j;
