@@ -3,7 +3,7 @@
 import React from 'react';
 
 export default React.createClass({
-  _onChange () {
+  onChange () {
     var currentDistrict = this.getDOMNode().value;
     this.props.changeDistrict(currentDistrict);
   },
