@@ -14,6 +14,13 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'County',
 
+  propTypes: {
+    changeCounty: _react2['default'].PropTypes.func,
+    className: _react2['default'].PropTypes.string,
+    data: _react2['default'].PropTypes.object,
+    defaultValue: _react2['default'].PropTypes.string,
+    name: _react2['default'].PropTypes.string
+  },
   onChange: function onChange() {
     var currentCounty = this.getDOMNode().value;
     this.props.changeCounty(currentCounty);
@@ -165,7 +172,14 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'District',
 
-  _onChange: function _onChange() {
+  propTypes: {
+    changeDistrict: _react2['default'].PropTypes.func,
+    className: _react2['default'].PropTypes.string,
+    data: _react2['default'].PropTypes.object,
+    defaultValue: _react2['default'].PropTypes.string,
+    name: _react2['default'].PropTypes.string
+  },
+  onChange: function onChange() {
     var currentDistrict = this.getDOMNode().value;
     this.props.changeDistrict(currentDistrict);
   },
@@ -208,6 +222,12 @@ var _Data2 = _interopRequireDefault(_Data);
 exports['default'] = _react2['default'].createClass({
   displayName: 'ZipCode',
 
+  propTypes: {
+    changeZipcode: _react2['default'].PropTypes.func,
+    className: _react2['default'].PropTypes.string,
+    data: _react2['default'].PropTypes.object,
+    name: _react2['default'].PropTypes.string
+  },
   onChange: function onChange() {
     var zipCode = this.getDOMNode().value,
         i,
@@ -271,6 +291,20 @@ var _ZipCode2 = _interopRequireDefault(_ZipCode);
 exports['default'] = _react2['default'].createClass({
   displayName: 'TWzipcode',
 
+  propTypes: {
+    changeDistrict: _react2['default'].PropTypes.func,
+    countyName: _react2['default'].PropTypes.string,
+    countySel: _react2['default'].PropTypes.string,
+    css: _react2['default'].PropTypes.array,
+    detect: _react2['default'].PropTypes.bool,
+    districtName: _react2['default'].PropTypes.string,
+    districtSel: _react2['default'].PropTypes.string,
+    handleChangeCounty: _react2['default'].PropTypes.func,
+    handleChangeDistrict: _react2['default'].PropTypes.func,
+    handleChangeZipcode: _react2['default'].PropTypes.func,
+    zipcodeName: _react2['default'].PropTypes.func,
+    zipcodeSel: _react2['default'].PropTypes.string
+  },
   getInitialState: function getInitialState() {
     return {
       county: '',
@@ -387,6 +421,13 @@ exports['default'] = _react2['default'].createClass({
       this.geoLocation();
     }
 
+    this.setInitialState(county, counties, district, districts, zipcode);
+
+    if (this.props.zipcodeSel !== '') {
+      this.changeZipcode(this.props.zipcodeSel);
+    }
+  },
+  setInitialState: function setInitialState(county, counties, district, districts, zipcode) {
     this.setState({
       county: county,
       counties: counties,
@@ -394,10 +435,6 @@ exports['default'] = _react2['default'].createClass({
       districts: districts,
       zipcode: zipcode
     });
-
-    if (this.props.zipcodeSel !== '') {
-      this.changeZipcode(this.props.zipcodeSel);
-    }
   },
   changeCounty: function changeCounty(county) {
     var districts = [];
