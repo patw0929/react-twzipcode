@@ -39,7 +39,8 @@ export default React.createClass({
       districtName: 'district',
       districtSel: '',
       zipcodeName: 'zipcode',
-      zipcodeSel: ''
+      zipcodeSel: '',
+      googleMapsKey: ''
     };
   },
   geoLocation () {
@@ -69,7 +70,7 @@ export default React.createClass({
     geolocation.getCurrentPosition(
       function (loc) {
         var latlng = {},
-          googleGeocodeApiUrl = 'http://maps.googleapis.com/maps/api/geocode/json';
+          googleGeocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
         if (('coords' in loc) &&
           ('latitude' in loc.coords) &&
@@ -79,7 +80,8 @@ export default React.createClass({
           var xmlhttp = new XMLHttpRequest(),
             sendData = {
               'sensor': false,
-              'latlng': latlng.join(',')
+              'latlng': latlng.join(','),
+              'key': self.props.googleMapsKey
             };
 
           if (sendData) {
