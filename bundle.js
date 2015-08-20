@@ -323,7 +323,8 @@ exports['default'] = _react2['default'].createClass({
       districtName: 'district',
       districtSel: '',
       zipcodeName: 'zipcode',
-      zipcodeSel: ''
+      zipcodeSel: '',
+      googleMapsKey: ''
     };
   },
   geoLocation: function geoLocation() {
@@ -352,14 +353,15 @@ exports['default'] = _react2['default'].createClass({
 
     geolocation.getCurrentPosition(function (loc) {
       var latlng = {},
-          googleGeocodeApiUrl = 'http://maps.googleapis.com/maps/api/geocode/json';
+          googleGeocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
       if ('coords' in loc && 'latitude' in loc.coords && 'longitude' in loc.coords) {
         latlng = [loc.coords.latitude, loc.coords.longitude];
         var xmlhttp = new XMLHttpRequest(),
             sendData = {
           'sensor': false,
-          'latlng': latlng.join(',')
+          'latlng': latlng.join(','),
+          'key': self.props.googleMapsKey
         };
 
         if (sendData) {
