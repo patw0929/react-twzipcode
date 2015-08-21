@@ -20,8 +20,9 @@
     "babel-eslint": "^3.1.14",
     "eslint": "^0.22.1",
     "eslint-plugin-react": "^2.5.0",
-    "react-component-gulp-tasks": "^0.7.0",
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "jest-cli": "^0.5.0",
+    "react-component-gulp-tasks": "^0.7.0"
   },
   "browserify-shim": {
     "react": "global:React"
@@ -33,7 +34,7 @@
     "publish:site": "gulp publish:examples",
     "release": "gulp release",
     "start": "gulp dev",
-    "test": "echo \"no tests yet\" && exit 0",
+    "test": "jest",
     "watch": "gulp watch:lib"
   },
   "keywords": [
