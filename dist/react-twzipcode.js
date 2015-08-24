@@ -244,6 +244,7 @@ exports['default'] = _react2['default'].createClass({
     detect: _react2['default'].PropTypes.bool,
     districtName: _react2['default'].PropTypes.string,
     districtSel: _react2['default'].PropTypes.string,
+    googleMapsKey: _react2['default'].PropTypes.string,
     handleChangeCounty: _react2['default'].PropTypes.func,
     handleChangeDistrict: _react2['default'].PropTypes.func,
     handleChangeZipcode: _react2['default'].PropTypes.func,

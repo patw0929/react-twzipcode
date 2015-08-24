@@ -15,6 +15,7 @@ export default React.createClass({
     detect: React.PropTypes.bool,
     districtName: React.PropTypes.string,
     districtSel: React.PropTypes.string,
+    googleMapsKey: React.PropTypes.string,
     handleChangeCounty: React.PropTypes.func,
     handleChangeDistrict: React.PropTypes.func,
     handleChangeZipcode: React.PropTypes.func,
