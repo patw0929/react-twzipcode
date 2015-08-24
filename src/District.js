@@ -15,10 +15,9 @@ export default React.createClass({
     this.props.changeDistrict(currentDistrict);
   },
   render () {
-    var self = this;
-    var districts = this.props.data.map(function (value) {
+    var districts = this.props.data.map((value) => {
       return (
-        <option value={value} selected={self.props.defaultValue === value}>{value}</option>
+        <option value={value} selected={this.props.defaultValue === value}>{value}</option>
       );
     });
 

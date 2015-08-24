@@ -44,8 +44,7 @@ export default React.createClass({
     };
   },
   geoLocation () {
-    var self = this,
-      geolocation = navigator.geolocation,
+    var geolocation = navigator.geolocation,
       options = {
         'maximumAge': 600000,
         'timeout': 10000,
@@ -56,7 +55,7 @@ export default React.createClass({
       return;
     }
 
-    var serializeObject = function (obj) {
+    var serializeObject = (obj) => {
       var pairs = [];
       for (var prop in obj) {
         if (!obj.hasOwnProperty(prop)) {
@@ -68,7 +67,7 @@ export default React.createClass({
     };
 
     geolocation.getCurrentPosition(
-      function (loc) {
+      (loc) => {
         var latlng = {},
           googleGeocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
@@ -81,7 +80,7 @@ export default React.createClass({
             sendData = {
               'sensor': false,
               'latlng': latlng.join(','),
-              'key': self.props.googleMapsKey
+              'key': this.props.googleMapsKey
             };
 
           if (sendData) {
@@ -91,7 +90,7 @@ export default React.createClass({
           xmlhttp.open('GET', googleGeocodeApiUrl, true);
           xmlhttp.send(null);
 
-          xmlhttp.onreadystatechange = function () {
+          xmlhttp.onreadystatechange = () => {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
               var data = JSON.parse(xmlhttp.responseText);
 
@@ -106,7 +105,7 @@ export default React.createClass({
                   .address_components[data.results[0].address_components.length - 1]
                   .long_name;
                 if (postal) {
-                  self.changeZipcode(postal);
+                  this.changeZipcode(postal);
                 }
               }
             }
