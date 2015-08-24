@@ -1,4 +1,4 @@
-# React-TWzipcode
+# React-TWzipcode [![Build Status](https://travis-ci.org/patw0929/react-twzipcode.svg)](https://travis-ci.org/patw0929/react-twzipcode)
 
 Rewrite [jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode) in React.js.
 
