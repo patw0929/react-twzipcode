@@ -7,7 +7,7 @@ export default React.createClass({
   propTypes: {
     changeZipcode: React.PropTypes.func,
     className: React.PropTypes.string,
-    data: React.PropTypes.object,
+    data: React.PropTypes.string,
     name: React.PropTypes.string
   },
   onChange () {

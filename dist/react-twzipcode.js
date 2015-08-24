@@ -1,4 +1,5 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.TWzipcode = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -7,7 +8,7 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _react = (window.React);
+var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -17,7 +18,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeCounty: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.array,
     defaultValue: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
@@ -26,25 +27,24 @@ exports['default'] = _react2['default'].createClass({
     this.props.changeCounty(currentCounty);
   },
   render: function render() {
-    var _this = this;
-
-    var counties = this.props.data.map(function (value) {
+    var counties = this.props.data.map(function (value, key) {
       return _react2['default'].createElement(
         'option',
-        { value: value, selected: _this.props.defaultValue === value },
+        { key: key, value: value },
         value
       );
     });
 
     return _react2['default'].createElement(
       'select',
-      { name: this.props.name, className: this.props.className, onChange: this.onChange, defaultValue: this.props.defaultValue },
+      { name: this.props.name, className: this.props.className, onChange: this.onChange, value: this.props.defaultValue },
       counties
     );
   }
 });
 module.exports = exports['default'];
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 'use strict';
 
@@ -157,6 +157,7 @@ exports['default'] = {
 module.exports = exports['default'];
 
 },{}],3:[function(require,module,exports){
+(function (global){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -165,7 +166,7 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _react = (window.React);
+var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -175,7 +176,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeDistrict: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.array,
     defaultValue: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
@@ -184,25 +185,26 @@ exports['default'] = _react2['default'].createClass({
     this.props.changeDistrict(currentDistrict);
   },
   render: function render() {
-    var self = this;
-    var districts = this.props.data.map(function (value) {
+    var districts = this.props.data.map(function (value, key) {
       return _react2['default'].createElement(
         'option',
-        { value: value, selected: self.props.defaultValue === value },
+        { key: key, value: value },
         value
       );
     });
 
     return _react2['default'].createElement(
       'select',
-      { name: this.props.name, className: this.props.className, onChange: this.onChange, defaultValue: this.props.defaultValue },
+      { name: this.props.name, className: this.props.className, onChange: this.onChange, value: this.props.defaultValue },
       districts
     );
   }
 });
 module.exports = exports['default'];
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
+(function (global){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -211,7 +213,7 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _react = (window.React);
+var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -242,10 +244,11 @@ exports['default'] = _react2['default'].createClass({
     detect: _react2['default'].PropTypes.bool,
     districtName: _react2['default'].PropTypes.string,
     districtSel: _react2['default'].PropTypes.string,
+    googleMapsKey: _react2['default'].PropTypes.string,
     handleChangeCounty: _react2['default'].PropTypes.func,
     handleChangeDistrict: _react2['default'].PropTypes.func,
     handleChangeZipcode: _react2['default'].PropTypes.func,
-    zipcodeName: _react2['default'].PropTypes.func,
+    zipcodeName: _react2['default'].PropTypes.string,
     zipcodeSel: _react2['default'].PropTypes.string
   },
   getInitialState: function getInitialState() {
@@ -271,8 +274,9 @@ exports['default'] = _react2['default'].createClass({
     };
   },
   geoLocation: function geoLocation() {
-    var self = this,
-        geolocation = navigator.geolocation,
+    var _this = this;
+
+    var geolocation = navigator.geolocation,
         options = {
       'maximumAge': 600000,
       'timeout': 10000,
@@ -304,7 +308,7 @@ exports['default'] = _react2['default'].createClass({
             sendData = {
           'sensor': false,
           'latlng': latlng.join(','),
-          'key': self.props.googleMapsKey
+          'key': _this.props.googleMapsKey
         };
 
         if (sendData) {
@@ -323,13 +327,15 @@ exports['default'] = _react2['default'].createClass({
             if (data && data.hasOwnProperty('results') && data.results[0].hasOwnProperty('address_components') && undefined !== data.results[0].address_components[0]) {
               postal = data.results[0].address_components[data.results[0].address_components.length - 1].long_name;
               if (postal) {
-                self.changeZipcode(postal);
+                _this.changeZipcode(postal);
               }
             }
           }
         };
       }
-    }, function () {}, options);
+    }, function () {
+      // error
+    }, options);
   },
   componentDidMount: function componentDidMount() {
     var county,
@@ -459,9 +465,9 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
-// error
-
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./County":1,"./Data":2,"./District":3,"./ZipCode":5}],5:[function(require,module,exports){
+(function (global){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -470,7 +476,7 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _react = (window.React);
+var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -484,7 +490,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeZipcode: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
   onChange: function onChange() {
@@ -518,5 +524,6 @@ exports['default'] = _react2['default'].createClass({
 });
 module.exports = exports['default'];
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./Data":2}]},{},[4])(4)
 });

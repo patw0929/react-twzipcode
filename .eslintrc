@@ -4,6 +4,13 @@
 		"browser": true,
 		"node": true
 	},
+  "globals": {
+    "jest": true,
+    "describe": true,
+    "it": true,
+    "expect": true,
+    "beforeEach": true
+  },
 	"plugins": [
 		"react"
 	],
