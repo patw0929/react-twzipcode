@@ -6,7 +6,7 @@ export default React.createClass({
   propTypes: {
     changeDistrict: React.PropTypes.func,
     className: React.PropTypes.string,
-    data: React.PropTypes.object,
+    data: React.PropTypes.array,
     defaultValue: React.PropTypes.string,
     name: React.PropTypes.string
   },
@@ -15,14 +15,14 @@ export default React.createClass({
     this.props.changeDistrict(currentDistrict);
   },
   render () {
-    var districts = this.props.data.map((value) => {
+    var districts = this.props.data.map((value, key) => {
       return (
-        <option value={value} selected={this.props.defaultValue === value}>{value}</option>
+        <option key={key} value={value}>{value}</option>
       );
     });
 
     return (
-      <select name={this.props.name} className={this.props.className} onChange={this.onChange} defaultValue={this.props.defaultValue}>
+      <select name={this.props.name} className={this.props.className} onChange={this.onChange} value={this.props.defaultValue}>
         {districts}
       </select>
     );
