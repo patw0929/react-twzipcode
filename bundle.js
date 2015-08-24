@@ -17,7 +17,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeCounty: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.array,
     defaultValue: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
@@ -26,19 +26,17 @@ exports['default'] = _react2['default'].createClass({
     this.props.changeCounty(currentCounty);
   },
   render: function render() {
-    var _this = this;
-
-    var counties = this.props.data.map(function (value) {
+    var counties = this.props.data.map(function (value, key) {
       return _react2['default'].createElement(
         'option',
-        { value: value, selected: _this.props.defaultValue === value },
+        { key: key, value: value },
         value
       );
     });
 
     return _react2['default'].createElement(
       'select',
-      { name: this.props.name, className: this.props.className, onChange: this.onChange, defaultValue: this.props.defaultValue },
+      { name: this.props.name, className: this.props.className, onChange: this.onChange, value: this.props.defaultValue },
       counties
     );
   }
@@ -175,7 +173,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeDistrict: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.array,
     defaultValue: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
@@ -184,18 +182,17 @@ exports['default'] = _react2['default'].createClass({
     this.props.changeDistrict(currentDistrict);
   },
   render: function render() {
-    var self = this;
-    var districts = this.props.data.map(function (value) {
+    var districts = this.props.data.map(function (value, key) {
       return _react2['default'].createElement(
         'option',
-        { value: value, selected: self.props.defaultValue === value },
+        { key: key, value: value },
         value
       );
     });
 
     return _react2['default'].createElement(
       'select',
-      { name: this.props.name, className: this.props.className, onChange: this.onChange, defaultValue: this.props.defaultValue },
+      { name: this.props.name, className: this.props.className, onChange: this.onChange, value: this.props.defaultValue },
       districts
     );
   }
@@ -225,7 +222,7 @@ exports['default'] = _react2['default'].createClass({
   propTypes: {
     changeZipcode: _react2['default'].PropTypes.func,
     className: _react2['default'].PropTypes.string,
-    data: _react2['default'].PropTypes.object,
+    data: _react2['default'].PropTypes.string,
     name: _react2['default'].PropTypes.string
   },
   onChange: function onChange() {
@@ -299,10 +296,11 @@ exports['default'] = _react2['default'].createClass({
     detect: _react2['default'].PropTypes.bool,
     districtName: _react2['default'].PropTypes.string,
     districtSel: _react2['default'].PropTypes.string,
+    googleMapsKey: _react2['default'].PropTypes.string,
     handleChangeCounty: _react2['default'].PropTypes.func,
     handleChangeDistrict: _react2['default'].PropTypes.func,
     handleChangeZipcode: _react2['default'].PropTypes.func,
-    zipcodeName: _react2['default'].PropTypes.func,
+    zipcodeName: _react2['default'].PropTypes.string,
     zipcodeSel: _react2['default'].PropTypes.string
   },
   getInitialState: function getInitialState() {
@@ -328,8 +326,9 @@ exports['default'] = _react2['default'].createClass({
     };
   },
   geoLocation: function geoLocation() {
-    var self = this,
-        geolocation = navigator.geolocation,
+    var _this = this;
+
+    var geolocation = navigator.geolocation,
         options = {
       'maximumAge': 600000,
       'timeout': 10000,
@@ -361,7 +360,7 @@ exports['default'] = _react2['default'].createClass({
             sendData = {
           'sensor': false,
           'latlng': latlng.join(','),
-          'key': self.props.googleMapsKey
+          'key': _this.props.googleMapsKey
         };
 
         if (sendData) {
@@ -380,13 +379,15 @@ exports['default'] = _react2['default'].createClass({
             if (data && data.hasOwnProperty('results') && data.results[0].hasOwnProperty('address_components') && undefined !== data.results[0].address_components[0]) {
               postal = data.results[0].address_components[data.results[0].address_components.length - 1].long_name;
               if (postal) {
-                self.changeZipcode(postal);
+                _this.changeZipcode(postal);
               }
             }
           }
         };
       }
-    }, function () {}, options);
+    }, function () {
+      // error
+    }, options);
   },
   componentDidMount: function componentDidMount() {
     var county,
@@ -515,7 +516,5 @@ exports['default'] = _react2['default'].createClass({
   }
 });
 module.exports = exports['default'];
-
-// error
 
 },{"./County":1,"./Data":2,"./District":3,"./ZipCode":4,"react":undefined}]},{},[]);
