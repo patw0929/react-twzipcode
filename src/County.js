@@ -6,7 +6,7 @@ export default React.createClass({
   propTypes: {
     changeCounty: React.PropTypes.func,
     className: React.PropTypes.string,
-    data: React.PropTypes.object,
+    data: React.PropTypes.array,
     defaultValue: React.PropTypes.string,
     name: React.PropTypes.string
   },

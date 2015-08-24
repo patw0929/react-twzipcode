@@ -18,7 +18,7 @@ export default React.createClass({
     handleChangeCounty: React.PropTypes.func,
     handleChangeDistrict: React.PropTypes.func,
     handleChangeZipcode: React.PropTypes.func,
-    zipcodeName: React.PropTypes.func,
+    zipcodeName: React.PropTypes.string,
     zipcodeSel: React.PropTypes.string
   },
   getInitialState () {
