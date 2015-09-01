@@ -175,9 +175,11 @@ React.render(&lt;App /&gt;, document.getElementById('app'));
     </div>
   </div>
 
-  <script src="common.js"></script>
-  <script src="bundle.js"></script>
-  <script src="example.js"></script>
+  <script src="https://fb.me/react-0.13.3.js"></script>
+  <script>
+    __REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
+  </script>
+  <script src="assets/example.js"></script>
 
   <script>hljs.initHighlightingOnLoad();</script>
 </body>

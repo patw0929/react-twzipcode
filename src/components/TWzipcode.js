@@ -1,51 +1,96 @@
-'use strict';
-
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Data from './Data';
 import County from './County';
 import District from './District';
 import ZipCode from './ZipCode';
 
-export default React.createClass({
-  propTypes: {
-    changeDistrict: React.PropTypes.func,
-    countyName: React.PropTypes.string,
-    countySel: React.PropTypes.string,
-    css: React.PropTypes.array,
-    detect: React.PropTypes.bool,
-    districtName: React.PropTypes.string,
-    districtSel: React.PropTypes.string,
-    googleMapsKey: React.PropTypes.string,
-    handleChangeCounty: React.PropTypes.func,
-    handleChangeDistrict: React.PropTypes.func,
-    handleChangeZipcode: React.PropTypes.func,
-    zipcodeName: React.PropTypes.string,
-    zipcodeSel: React.PropTypes.string
-  },
-  getInitialState () {
-    return {
+class TWzipcode extends Component {
+   constructor() {
+    super();
+    this.state = {
       county: '',
       counties: Object.keys(Data),
       district: '',
       districts: [],
       zipcode: ''
     };
-  },
-  getDefaultProps () {
-    return {
-      countyName: 'county',
-      countySel: '',
-      css: ['county-sel', 'district-sel', 'zipcode'],
-      detect: false,
-      districtName: 'district',
-      districtSel: '',
-      zipcodeName: 'zipcode',
-      zipcodeSel: '',
-      googleMapsKey: ''
-    };
-  },
-  geoLocation () {
-    var geolocation = navigator.geolocation,
+
+    this.geoLocation = this.geoLocation.bind(this);
+    this.changeCounty = this.changeCounty.bind(this);
+    this.changeDistrict = this.changeDistrict.bind(this);
+    this.changeZipcode = this.changeZipcode.bind(this);
+   }
+
+  static propTypes = {
+    changeDistrict: PropTypes.func,
+    countyName: PropTypes.string,
+    countySel: PropTypes.string,
+    css: PropTypes.array,
+    detect: PropTypes.bool,
+    districtName: PropTypes.string,
+    districtSel: PropTypes.string,
+    googleMapsKey: PropTypes.string,
+    handleChangeCounty: PropTypes.func,
+    handleChangeDistrict: PropTypes.func,
+    handleChangeZipcode: PropTypes.func,
+    zipcodeName: PropTypes.string,
+    zipcodeSel: PropTypes.string
+  }
+
+  static defaultProps = {
+    countyName: 'county',
+    countySel: '',
+    css: ['county-sel', 'district-sel', 'zipcode'],
+    detect: false,
+    districtName: 'district',
+    districtSel: '',
+    zipcodeName: 'zipcode',
+    zipcodeSel: '',
+    googleMapsKey: ''
+  }
+
+  componentDidMount() {
+    let county, counties, district, districts = [], zipcode;
+
+    counties = Object.keys(Data);
+
+    if (this.props.countySel === '') {
+      county = counties[0];
+    } else {
+      county = this.props.countySel;
+    }
+
+    for (let d in Data[county]) {
+      if (Data[county].hasOwnProperty(d)) {
+        districts.push(d);
+      }
+    }
+
+    if (this.props.districtSel === '') {
+      district = districts[0];
+    } else {
+      if (this.props.districtSel in districts) {
+        district = this.props.districtSel;
+      } else {
+        district = districts[0];
+      }
+    }
+
+    zipcode = Data[county][district];
+
+    if (this.props.detect) {
+      this.geoLocation();
+    }
+
+    this.setInitialState(county, counties, district, districts, zipcode);
+
+    if (this.props.zipcodeSel !== '') {
+      this.changeZipcode(this.props.zipcodeSel);
+    }
+  }
+
+  geoLocation() {
+    let geolocation = navigator.geolocation,
       options = {
         'maximumAge': 600000,
         'timeout': 10000,
@@ -56,9 +101,9 @@ export default React.createClass({
       return;
     }
 
-    var serializeObject = (obj) => {
-      var pairs = [];
-      for (var prop in obj) {
+    let serializeObject = (obj) => {
+      let pairs = [];
+      for (let prop in obj) {
         if (!obj.hasOwnProperty(prop)) {
           continue;
         }
@@ -69,7 +114,7 @@ export default React.createClass({
 
     geolocation.getCurrentPosition(
       (loc) => {
-        var latlng = {},
+        let latlng = {},
           googleGeocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
         if (('coords' in loc) &&
@@ -77,7 +122,7 @@ export default React.createClass({
           ('longitude' in loc.coords)
         ) {
           latlng = [loc.coords.latitude, loc.coords.longitude];
-          var xmlhttp = new XMLHttpRequest(),
+          let xmlhttp = new XMLHttpRequest(),
             sendData = {
               'sensor': false,
               'latlng': latlng.join(','),
@@ -113,49 +158,13 @@ export default React.createClass({
           };
         }
       },
-      function () {
+      () => {
         // error
       },
       options
     );
-  },
-  componentDidMount () {
-    var county, counties, district, districts = [], zipcode;
+  }
 
-    counties = Object.keys(Data);
-
-    if (this.props.countySel === '') {
-      county = counties[0];
-    } else {
-      county = this.props.countySel;
-    }
-
-    for (var d in Data[county]) {
-      districts.push(d);
-    }
-
-    if (this.props.districtSel === '') {
-      district = districts[0];
-    } else {
-      if (this.props.districtSel in districts) {
-        district = this.props.districtSel;
-      } else {
-        district = districts[0];
-      }
-    }
-
-    zipcode = Data[county][district];
-
-    if (this.props.detect) {
-      this.geoLocation();
-    }
-
-    this.setInitialState(county, counties, district, districts, zipcode);
-
-    if (this.props.zipcodeSel !== '') {
-      this.changeZipcode(this.props.zipcodeSel);
-    }
-  },
   setInitialState(county, counties, district, districts, zipcode) {
     this.setState({
       county: county,
@@ -164,11 +173,14 @@ export default React.createClass({
       districts: districts,
       zipcode: zipcode
     });
-  },
-  changeCounty (county) {
-    var districts = [];
-    for (var district in Data[county]) {
-      districts.push(district);
+  }
+
+  changeCounty(county) {
+    let districts = [];
+    for (let district in Data[county]) {
+      if (Data[county].hasOwnProperty(district)) {
+        districts.push(district);
+      }
     }
 
     this.setState({
@@ -177,14 +189,15 @@ export default React.createClass({
       district: districts[0],
       districts: districts,
       zipcode: Data[county][districts[0]]
-    }, function () {
+    }, () => {
       if (typeof this.props.handleChangeCounty === 'function') {
         this.props.handleChangeCounty(this.state);
       }
     });
-  },
-  changeDistrict (district) {
-    var zipCode = Data[this.state.county][[district][0]];
+  }
+
+  changeDistrict(district) {
+    let zipCode = Data[this.state.county][[district][0]];
 
     this.setState({
       county: this.state.county,
@@ -192,19 +205,20 @@ export default React.createClass({
       district: district,
       districts: this.state.districts,
       zipcode: zipCode
-    }, function () {
+    }, () => {
       if (typeof this.props.handleChangeDistrict === 'function') {
         this.props.handleChangeDistrict(this.state);
       }
     });
-  },
-  changeZipcode (zipcode) {
-    var county = '',
+  }
+
+  changeZipcode(zipcode) {
+    let county = '',
       district = '';
 
-    for (var i in Data) {
+    for (let i in Data) {
       if (Data.hasOwnProperty(i)) {
-        for (var j in Data[i]) {
+        for (let j in Data[i]) {
           if (Data[i].hasOwnProperty(j)) {
             if (zipcode === Data[i][j]) {
               county = i;
@@ -225,13 +239,14 @@ export default React.createClass({
       district: district,
       districts: districts,
       zipcode: zipcode
-    }, function () {
+    }, () => {
       if (typeof this.props.handleChangeZipcode === 'function') {
         this.props.handleChangeZipcode(this.state);
       }
     });
-  },
-  render () {
+  }
+
+  render() {
     return (
       <div>
         <County ref="county" name={this.props.countyName} className={this.props.css[0]} data={this.state.counties} defaultValue={this.state.county} changeCounty={this.changeCounty} />
@@ -240,4 +255,6 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+export default TWzipcode;

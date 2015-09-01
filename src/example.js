@@ -1,5 +1,5 @@
-var React = require('react');
-var TWzipcode = require('react-twzipcode');
+import React from 'react';
+import TWzipcode from 'react-twzipcode';
 
 var App = React.createClass({
   handleChange (data) {

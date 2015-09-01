@@ -1,12 +1,10 @@
-'use strict';
-
-jest.dontMock('../src/TWzipcode.js');
-jest.dontMock('../src/District.js');
+jest.dontMock('../src/components/TWzipcode.js');
+jest.dontMock('../src/components/District.js');
 
 describe('County', function() {
   var React = require('react/addons');
-  var TWzipcode = require('../src/TWzipcode.js');
-  var District = require('../src/District.js');
+  var TWzipcode = require('../src/components/TWzipcode.js');
+  var District = require('../src/components/District.js');
   var TestUtils = React.addons.TestUtils;
   var component;
 
@@ -25,7 +23,7 @@ describe('County', function() {
   });
 
   it('set district className', function() {
-    var district = TestUtils.findRenderedComponentWithType(component, District).getDOMNode();
-    expect(district.className).toEqual('form-control district-sel');
+    var district = TestUtils.findRenderedComponentWithType(component, District);
+    expect(React.findDOMNode(district).className).toEqual('form-control district-sel');
   });
 });
