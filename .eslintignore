@@ -1,5 +1,7 @@
 .publish/*
 dist/*
-example/dist/*
+example/assets/*
 lib/*
 node_modules/*
+coverage/*
+webpack.*
