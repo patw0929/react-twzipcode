@@ -2,7 +2,7 @@
   "name": "react-twzipcode",
   "version": "0.0.8",
   "description": "Rewrite jQuery-TWzipcode in React.js.",
-  "main": "lib/TWzipcode.js",
+  "main": "dist/main.js",
   "author": "patw",
   "homepage": "https://github.com/patw0929/react-twzipcode",
   "repository": {
