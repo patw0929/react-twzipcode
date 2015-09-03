@@ -1,14 +1,13 @@
-jest.dontMock('../src/components/TWzipcode.js');
-jest.dontMock('../src/components/District.js');
+import '../.auto_mock_off';
+import React, { findDOMNode } from 'react/addons';
+import TWzipcode from '../src/containers/App';
+import District from '../src/components/District';
 
-describe('County', function() {
-  var React = require('react/addons');
-  var TWzipcode = require('../src/components/TWzipcode.js');
-  var District = require('../src/components/District.js');
+describe('County', () => {
   var TestUtils = React.addons.TestUtils;
   var component;
 
-  beforeEach(function() {
+  beforeEach(() => {
     component = TestUtils.renderIntoDocument(
       <TWzipcode css={['form-control county-sel',
                        'form-control district-sel',
@@ -17,13 +16,13 @@ describe('County', function() {
     );
   });
 
-  it('set zipcode as 251, then district should be "淡水區"', function() {
-    var district = TestUtils.findRenderedComponentWithType(component, District);
+  it('set zipcode as 251, then district should be "淡水區"', () => {
+    let district = TestUtils.findRenderedComponentWithType(component, District);
     expect(district.props.defaultValue).toEqual('淡水區');
   });
 
-  it('set district className', function() {
-    var district = TestUtils.findRenderedComponentWithType(component, District);
-    expect(React.findDOMNode(district).className).toEqual('form-control district-sel');
+  it('set district className', () => {
+    let district = TestUtils.findRenderedComponentWithType(component, District);
+    expect(findDOMNode(district).className).toEqual('form-control district-sel');
   });
 });
