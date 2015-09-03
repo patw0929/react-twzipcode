@@ -8,7 +8,7 @@ let state = {};
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 
-class App extends Component {
+class TWzipcode extends Component {
   constructor() {
     super();
   }
@@ -83,4 +83,4 @@ store.subscribe(() => {
   state = { county: county, district: district, zipcode: zipcode };
 });
 
-export default App;
+export default TWzipcode;

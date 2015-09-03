@@ -1,6 +1,5 @@
 import React from 'react';
-// import { default as TWzipcode } from 'react-twzipcode';
-import { default as TWzipcode } from './containers/App';
+import TWzipcode from 'react-twzipcode';
 
 var App = React.createClass({
   handleChange (data) {
