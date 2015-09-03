@@ -12,7 +12,7 @@ let initialState = {
   district: '',
   districts: [],
   zipcode: ''
-}
+};
 
 export default function twzipcodeReducer(state = initialState, action) {
   switch (action.type) {
@@ -23,7 +23,7 @@ export default function twzipcodeReducer(state = initialState, action) {
       district: action.data.district,
       districts: action.data.districts,
       zipcode: action.data.zipcode
-    }
+    };
 
   case CHANGE_COUNTY:
     let districts = [];
@@ -39,7 +39,7 @@ export default function twzipcodeReducer(state = initialState, action) {
       district: districts[0],
       districts: districts,
       zipcode: Data[action.data.county][districts[0]]
-    }
+    };
 
   case CHANGE_DISTRICT:
     let zipCode = Data[state.county][[action.data.district][0]];
@@ -48,7 +48,7 @@ export default function twzipcodeReducer(state = initialState, action) {
       ...state,
       district: action.data.district,
       zipcode: zipCode
-    }
+    };
 
   case CHANGE_ZIPCODE:
     let county = '',
@@ -74,9 +74,9 @@ export default function twzipcodeReducer(state = initialState, action) {
       district: district,
       districts: Object.keys(Data[county]),
       zipcode: action.data.zipcode
-    }
+    };
 
   default:
     return state;
   }
-};
+}

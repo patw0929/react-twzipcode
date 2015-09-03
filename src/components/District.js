@@ -7,10 +7,12 @@ class District extends Component {
   }
 
   static propTypes = {
+    actions: PropTypes.object,
     changeDistrict: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.array,
     defaultValue: PropTypes.string,
+    handleChangeDistrict: PropTypes.func,
     name: PropTypes.string
   }
 

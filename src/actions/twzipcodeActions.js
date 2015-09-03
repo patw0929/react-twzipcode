@@ -14,8 +14,8 @@ export function getInitData(county, district, districts, zipcode) {
       districts: districts,
       zipcode: zipcode
     }
-  }
-};
+  };
+}
 
 export function changeCounty(county) {
   return {
@@ -23,8 +23,8 @@ export function changeCounty(county) {
     data: {
       county: county
     }
-  }
-};
+  };
+}
 
 export function changeDistrict(district) {
   return {
@@ -32,8 +32,8 @@ export function changeDistrict(district) {
     data: {
       district: district
     }
-  }
-};
+  };
+}
 
 export function changeZipcode(zipcode) {
   return {
@@ -41,5 +41,5 @@ export function changeZipcode(zipcode) {
     data: {
       zipcode: zipcode
     }
-  }
+  };
 }

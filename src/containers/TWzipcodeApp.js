@@ -15,6 +15,8 @@ class TWzipcodeApp extends Component {
     detect: PropTypes.bool,
     districtName: PropTypes.string,
     districtSel: PropTypes.string,
+    dispatch: PropTypes.func,
+    twzipcodeData: PropTypes.object,
     googleMapsKey: PropTypes.string,
     handleChangeCounty: PropTypes.func,
     handleChangeDistrict: PropTypes.func,
@@ -183,7 +185,7 @@ class TWzipcodeApp extends Component {
 function select(state) {
   return {
     twzipcodeData: state.twzipcodeData
-  }
+  };
 }
 
 export default connect(select)(TWzipcodeApp);

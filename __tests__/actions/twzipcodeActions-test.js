@@ -10,7 +10,7 @@ describe('actions', () => {
       data: {
         county: '新北市',
         district: '淡水區',
-        districts: ["淡水區"],
+        districts: ['淡水區'],
         zipcode: '251'
       }
     });

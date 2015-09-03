@@ -8,9 +8,11 @@ class ZipCode extends Component {
   }
 
   static propTypes = {
+    actions: PropTypes.object,
     changeZipcode: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.string,
+    handleChangeZipcode: PropTypes.func,
     name: PropTypes.string
   }
 

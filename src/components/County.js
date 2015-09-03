@@ -7,10 +7,12 @@ class County extends Component {
   }
 
   static propTypes = {
+    actions: PropTypes.object,
     changeCounty: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.array,
     defaultValue: PropTypes.string,
+    handleChangeCounty: PropTypes.func,
     name: PropTypes.string
   }
 
