@@ -7,16 +7,20 @@ class District extends Component {
   }
 
   static propTypes = {
+    actions: PropTypes.object,
     changeDistrict: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.array,
     defaultValue: PropTypes.string,
+    handleChangeDistrict: PropTypes.func,
     name: PropTypes.string
   }
 
   onChange() {
     let currentDistrict = findDOMNode(this).value;
-    this.props.changeDistrict(currentDistrict);
+    this.props.actions.changeDistrict(currentDistrict);
+
+    this.props.handleChangeDistrict.call(this);
   }
 
   render() {

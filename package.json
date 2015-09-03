@@ -13,9 +13,7 @@
     "url": "https://github.com/patw0929/react-twzipcode/issues"
   },
   "dependencies": {
-    "classnames": "^2.1.2",
-    "react": "^0.13.3",
-    "react-tools": "^0.13.3"
+    "react": "^0.13.3"
   },
   "devDependencies": {
     "babel-core": "^5.8.3",
@@ -41,6 +39,8 @@
     "load-grunt-tasks": "^3.2.0",
     "node-sass": "^3.3.2",
     "react-hot-loader": "^1.3.0",
+    "react-redux": "^2.0.0",
+    "redux": "^2.0.0",
     "sass-loader": "^2.0.1",
     "simple-ajax": "^2.1.0",
     "style-loader": "^0.12.3",
@@ -61,7 +61,10 @@
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
-    ]
+    ],
+    "globals": {
+      "__DEV__": true
+    }
   },
   "keywords": [
     "react",

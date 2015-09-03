@@ -20,7 +20,7 @@ module.exports = {
   },
 
   entry: {
-    main: './src/components/TWzipcode.js'
+    main: './src/containers/App.js'
   },
 
   externals: {

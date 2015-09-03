@@ -19,7 +19,7 @@ module.exports = {
   entry: {
     main: [
       'webpack/hot/only-dev-server',
-      './src/components/TWzipcode.js'
+      './src/containers/TWzipcodeApp.js'
     ],
     example: [
       'webpack/hot/only-dev-server',
@@ -38,7 +38,7 @@ module.exports = {
       'styles': __dirname + '/src/styles',
       'mixins': __dirname + '/src/mixins',
       'components': __dirname + '/src/components/',
-      'react-twzipcode': './components/TWzipcode.js'
+      'react-twzipcode': './containers/App.js'
     }
   },
   module: {

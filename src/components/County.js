@@ -7,16 +7,20 @@ class County extends Component {
   }
 
   static propTypes = {
+    actions: PropTypes.object,
     changeCounty: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.array,
     defaultValue: PropTypes.string,
+    handleChangeCounty: PropTypes.func,
     name: PropTypes.string
   }
 
   onChange() {
     let currentCounty = findDOMNode(this).value;
-    this.props.changeCounty(currentCounty);
+    this.props.actions.changeCounty(currentCounty);
+
+    this.props.handleChangeCounty.call(this);
   }
 
   render() {
