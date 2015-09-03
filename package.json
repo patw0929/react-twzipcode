@@ -63,7 +63,10 @@
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
-    ]
+    ],
+    "globals": {
+      "__DEV__": true
+    }
   },
   "keywords": [
     "react",
