@@ -1,12 +1,10 @@
-'use strict';
-
-jest.dontMock('../src/TWzipcode.js');
-jest.dontMock('../src/ZipCode.js');
+jest.dontMock('../src/components/TWzipcode.js');
+jest.dontMock('../src/components/ZipCode.js');
 
 describe('ZipCode', function() {
   var React = require('react/addons');
-  var TWzipcode = require('../src/TWzipcode.js');
-  var ZipCode = require('../src/ZipCode.js');
+  var TWzipcode = require('../src/components/TWzipcode.js');
+  var ZipCode = require('../src/components/ZipCode.js');
   var TestUtils = React.addons.TestUtils;
   var component;
 
@@ -20,19 +18,19 @@ describe('ZipCode', function() {
   });
 
   it('set zipcode as 200', function() {
-    var input = TestUtils.findRenderedComponentWithType(component, ZipCode).getDOMNode();
-    expect(input.value).toEqual('200');
+    var input = TestUtils.findRenderedComponentWithType(component, ZipCode);
+    expect(React.findDOMNode(input).value).toEqual('200');
   });
 
   it('set zipcode className', function() {
-    var input = TestUtils.findRenderedComponentWithType(component, ZipCode).getDOMNode();
-    expect(input.className).toEqual('form-control zipcode');
+    var input = TestUtils.findRenderedComponentWithType(component, ZipCode);
+    expect(React.findDOMNode(input).className).toEqual('form-control zipcode');
   });
 
   it('change zipcode value', function() {
     var input = TestUtils.findRenderedComponentWithType(component, ZipCode);
-    input.getDOMNode().value = '300';
-    TestUtils.Simulate.change(input.getDOMNode());
+    React.findDOMNode(input).value = '300';
+    TestUtils.Simulate.change(React.findDOMNode(input));
     expect(input.props.data).toEqual('300');
   });
 });

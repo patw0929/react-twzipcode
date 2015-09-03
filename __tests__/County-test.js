@@ -1,12 +1,10 @@
-'use strict';
-
-jest.dontMock('../src/TWzipcode.js');
-jest.dontMock('../src/County.js');
+jest.dontMock('../src/components/TWzipcode.js');
+jest.dontMock('../src/components/County.js');
 
 describe('County', function() {
   var React = require('react/addons');
-  var TWzipcode = require('../src/TWzipcode.js');
-  var County = require('../src/County.js');
+  var TWzipcode = require('../src/components/TWzipcode.js');
+  var County = require('../src/components/County.js');
   var TestUtils = React.addons.TestUtils;
   var component;
 
@@ -25,14 +23,14 @@ describe('County', function() {
   });
 
   it('set county className', function() {
-    var county = TestUtils.findRenderedComponentWithType(component, County).getDOMNode();
-    expect(county.className).toEqual('form-control county-sel');
+    var county = TestUtils.findRenderedComponentWithType(component, County);
+    expect(React.findDOMNode(county).className).toEqual('form-control county-sel');
   });
 
   it('change county value', function() {
     var select = TestUtils.findRenderedComponentWithType(component, County);
-    select.getDOMNode().value = '南海諸島';
-    TestUtils.Simulate.change(select.getDOMNode());
+    React.findDOMNode(select).value = '南海諸島';
+    TestUtils.Simulate.change(React.findDOMNode(select));
     expect(select.props.defaultValue).toEqual('南海諸島');
   });
 });

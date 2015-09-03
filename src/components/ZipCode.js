@@ -1,17 +1,25 @@
-'use strict';
-
-import React from 'react';
+import React, { Component, PropTypes, findDOMNode } from 'react';
 import Data from './Data';
 
-export default React.createClass({
-  propTypes: {
-    changeZipcode: React.PropTypes.func,
-    className: React.PropTypes.string,
-    data: React.PropTypes.string,
-    name: React.PropTypes.string
-  },
-  onChange () {
-    var zipCode = this.getDOMNode().value,
+class ZipCode extends Component {
+  constructor() {
+    super();
+    this.onChange = this.onChange.bind(this);
+  }
+
+  static propTypes = {
+    changeZipcode: PropTypes.func,
+    className: PropTypes.string,
+    data: PropTypes.string,
+    name: PropTypes.string
+  }
+
+  componentDidUpdate() {
+    findDOMNode(this).value = this.props.data;
+  }
+
+  onChange() {
+    let zipCode = findDOMNode(this).value,
       i, j;
 
     if (zipCode.length === 3) {
@@ -28,15 +36,15 @@ export default React.createClass({
         }
       }
     }
-  },
-  componentDidUpdate () {
-    this.getDOMNode().value = this.props.data;
-  },
-  render () {
+  }
+
+  render() {
     return (
       <input type="text" className={this.props.className}
                          name={this.props.name}
                          onChange={this.onChange} />
     );
   }
-});
+}
+
+export default ZipCode;
