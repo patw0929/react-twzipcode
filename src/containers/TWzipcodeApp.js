@@ -1,28 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import Data from './Data';
-import County from './County';
-import District from './District';
-import ZipCode from './ZipCode';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import County from '../components/County';
+import District from '../components/District';
+import ZipCode from '../components/ZipCode';
+import Data from '../components/Data';
+import * as twzipcodeActions from '../actions/twzipcodeActions';
 
-class TWzipcode extends Component {
-   constructor() {
-    super();
-    this.state = {
-      county: '',
-      counties: Object.keys(Data),
-      district: '',
-      districts: [],
-      zipcode: ''
-    };
-
-    this.geoLocation = this.geoLocation.bind(this);
-    this.changeCounty = this.changeCounty.bind(this);
-    this.changeDistrict = this.changeDistrict.bind(this);
-    this.changeZipcode = this.changeZipcode.bind(this);
-   }
-
+class TWzipcodeApp extends Component {
   static propTypes = {
-    changeDistrict: PropTypes.func,
     countyName: PropTypes.string,
     countySel: PropTypes.string,
     css: PropTypes.array,
@@ -82,10 +68,10 @@ class TWzipcode extends Component {
       this.geoLocation();
     }
 
-    this.setInitialState(county, counties, district, districts, zipcode);
+    this.props.dispatch(twzipcodeActions.getInitData(county, district, districts, zipcode));
 
     if (this.props.zipcodeSel !== '') {
-      this.changeZipcode(this.props.zipcodeSel);
+      this.props.dispatch(twzipcodeActions.changeZipcode(this.props.zipcodeSel));
     }
   }
 
@@ -151,7 +137,7 @@ class TWzipcode extends Component {
                   .address_components[data.results[0].address_components.length - 1]
                   .long_name;
                 if (postal) {
-                  this.changeZipcode(postal);
+                  this.props.dispatch(twzipcodeActions.changeZipcode(postal));
                 }
               }
             }
@@ -165,96 +151,39 @@ class TWzipcode extends Component {
     );
   }
 
-  setInitialState(county, counties, district, districts, zipcode) {
-    this.setState({
-      county: county,
-      counties: counties,
-      district: district,
-      districts: districts,
-      zipcode: zipcode
-    });
-  }
-
-  changeCounty(county) {
-    let districts = [];
-    for (let district in Data[county]) {
-      if (Data[county].hasOwnProperty(district)) {
-        districts.push(district);
-      }
-    }
-
-    this.setState({
-      county: county,
-      counties: this.state.counties,
-      district: districts[0],
-      districts: districts,
-      zipcode: Data[county][districts[0]]
-    }, () => {
-      if (typeof this.props.handleChangeCounty === 'function') {
-        this.props.handleChangeCounty(this.state);
-      }
-    });
-  }
-
-  changeDistrict(district) {
-    let zipCode = Data[this.state.county][[district][0]];
-
-    this.setState({
-      county: this.state.county,
-      counties: this.state.counties,
-      district: district,
-      districts: this.state.districts,
-      zipcode: zipCode
-    }, () => {
-      if (typeof this.props.handleChangeDistrict === 'function') {
-        this.props.handleChangeDistrict(this.state);
-      }
-    });
-  }
-
-  changeZipcode(zipcode) {
-    let county = '',
-      district = '';
-
-    for (let i in Data) {
-      if (Data.hasOwnProperty(i)) {
-        for (let j in Data[i]) {
-          if (Data[i].hasOwnProperty(j)) {
-            if (zipcode === Data[i][j]) {
-              county = i;
-              district = j;
-              break;
-            }
-          }
-        }
-      }
-    }
-
-    var counties = Object.keys(Data),
-      districts = Object.keys(Data[county]);
-
-    this.setState({
-      county: county,
-      counties: counties,
-      district: district,
-      districts: districts,
-      zipcode: zipcode
-    }, () => {
-      if (typeof this.props.handleChangeZipcode === 'function') {
-        this.props.handleChangeZipcode(this.state);
-      }
-    });
-  }
-
   render() {
+    const { dispatch, twzipcodeData } = this.props;
+    const actions = bindActionCreators(twzipcodeActions, dispatch);
+
     return (
       <div>
-        <County ref="county" name={this.props.countyName} className={this.props.css[0]} data={this.state.counties} defaultValue={this.state.county} changeCounty={this.changeCounty} />
-        <District ref="district" name={this.props.districtName} className={this.props.css[1]} data={this.state.districts} defaultValue={this.state.district} changeDistrict={this.changeDistrict} />
-        <ZipCode ref="zipcode" zipcodeSel={this.props.zipcodeSel} name={this.props.zipcodeName} className={this.props.css[2]} data={this.state.zipcode} changeZipcode={this.changeZipcode} />
+        <County ref="county" name={this.props.countyName}
+                             className={this.props.css[0]}
+                             data={twzipcodeData.counties}
+                             defaultValue={twzipcodeData.county}
+                             handleChangeCounty={this.props.handleChangeCounty}
+                             actions={actions} />
+        <District ref="district" name={this.props.districtName}
+                                 className={this.props.css[1]}
+                                 data={twzipcodeData.districts}
+                                 defaultValue={twzipcodeData.district}
+                                 handleChangeDistrict={this.props.handleChangeDistrict}
+                                 actions={actions} />
+        <ZipCode ref="zipcode" zipcodeSel={this.props.zipcodeSel}
+                               name={this.props.zipcodeName}
+                               className={this.props.css[2]}
+                               data={twzipcodeData.zipcode}
+                               handleChangeZipcode={this.props.handleChangeZipcode}
+                               actions={actions} />
       </div>
     );
   }
 }
 
-export default TWzipcode;
+function select(state) {
+  return {
+    twzipcodeData: state.twzipcodeData
+  }
+}
+
+export default connect(select)(TWzipcodeApp);

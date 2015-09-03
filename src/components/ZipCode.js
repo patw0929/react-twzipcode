@@ -28,7 +28,7 @@ class ZipCode extends Component {
           for (j in Data[i]) {
             if (Data[i].hasOwnProperty(j)) {
               if (zipCode === Data[i][j]) {
-                this.props.changeZipcode(zipCode);
+                this.props.actions.changeZipcode(zipCode);
                 break;
               }
             }
@@ -36,6 +36,8 @@ class ZipCode extends Component {
         }
       }
     }
+
+    this.props.handleChangeZipcode.call(this);
   }
 
   render() {

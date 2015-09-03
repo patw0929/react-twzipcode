@@ -16,7 +16,9 @@ class District extends Component {
 
   onChange() {
     let currentDistrict = findDOMNode(this).value;
-    this.props.changeDistrict(currentDistrict);
+    this.props.actions.changeDistrict(currentDistrict);
+
+    this.props.handleChangeDistrict.call(this);
   }
 
   render() {

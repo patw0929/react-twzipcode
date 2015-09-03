@@ -16,7 +16,9 @@ class County extends Component {
 
   onChange() {
     let currentCounty = findDOMNode(this).value;
-    this.props.changeCounty(currentCounty);
+    this.props.actions.changeCounty(currentCounty);
+
+    this.props.handleChangeCounty.call(this);
   }
 
   render() {
