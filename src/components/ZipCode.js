@@ -4,7 +4,6 @@ import Data from './Data';
 class ZipCode extends Component {
   constructor() {
     super();
-    this.onChange = this.onChange.bind(this);
   }
 
   static propTypes = {
@@ -46,7 +45,7 @@ class ZipCode extends Component {
     return (
       <input type="text" className={this.props.className}
                          name={this.props.name}
-                         onChange={this.onChange} />
+                         onChange={::this.onChange} />
     );
   }
 }

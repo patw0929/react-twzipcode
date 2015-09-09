@@ -3,7 +3,6 @@ import React, { Component, PropTypes, findDOMNode } from 'react';
 class District extends Component {
   constructor() {
     super();
-    this.onChange = this.onChange.bind(this);
   }
 
   static propTypes = {
@@ -33,7 +32,7 @@ class District extends Component {
     return (
       <select name={this.props.name}
               className={this.props.className}
-              onChange={this.onChange}
+              onChange={::this.onChange}
               value={this.props.defaultValue}>
         {districts}
       </select>

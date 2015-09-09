@@ -3,7 +3,6 @@ import React, { Component, PropTypes, findDOMNode } from 'react';
 class County extends Component {
   constructor() {
     super();
-    this.onChange = this.onChange.bind(this);
   }
 
   static propTypes = {
@@ -33,7 +32,7 @@ class County extends Component {
     return (
       <select name={this.props.name}
               className={this.props.className}
-              onChange={this.onChange}
+              onChange={::this.onChange}
               value={this.props.defaultValue}>
         {counties}
       </select>
