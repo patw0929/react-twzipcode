@@ -1,4 +1,0 @@
-export const GET_PROPS_DATA = 'GET_PROPS_DATA';
-export const CHANGE_COUNTY = 'CHANGE_COUNTY';
-export const CHANGE_DISTRICT = 'CHANGE_DISTRICT';
-export const CHANGE_ZIPCODE = 'CHANGE_ZIPCODE';

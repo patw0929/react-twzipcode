@@ -1,4 +1,9 @@
-# React-TWzipcode [![Build Status](https://travis-ci.org/patw0929/react-twzipcode.svg)](https://travis-ci.org/patw0929/react-twzipcode)
+# React-TWzipcode
+
+[![Build Status](https://travis-ci.org/patw0929/react-twzipcode.svg)](https://travis-ci.org/patw0929/react-twzipcode)
+[![npm version](https://badge.fury.io/js/react-twzipcode.svg)](http://badge.fury.io/js/react-twzipcode)
+[![Coverage Status](https://coveralls.io/repos/github/patw0929/react-twzipcode/badge.svg?branch=master)](https://coveralls.io/github/patw0929/react-twzipcode?branch=master)
+[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 
 Rewrite [jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode) in React.js.
 
@@ -30,10 +35,10 @@ npm install react-twzipcode --save
 
 ## Usage
 
-```
-var TWzipcode = require('react-twzipcode');
+```javascript
+import TWzipcode from 'react-twzipcode';
 
-<TWzipcode css={['county-sel', 'district-sel', 'zipcode']}>Example</TWzipcode>
+<TWzipcode css={['county-sel', 'district-sel', 'zipcode']} />
 ```
 
 ### Properties
@@ -47,9 +52,20 @@ Please see the [Demo Page](http://patw0929.github.io/react-twzipcode/)
 
 To build, watch and serve the examples (which will also watch the component source), run `npm run example`.
 
+
+## Contributing
+
+To contribute to react-twzipcode, clone this repo locally and commit your code on a separate branch. Please write tests for your code, and run the linter before opening a pull-request:
+
+```bash
+npm test
+npm run lint
+```
+
+
 ## License
 
 MIT
 
-Copyright (c) 2015 patw.
+Copyright (c) 2015-2016 [patw](https://patw.me).
 

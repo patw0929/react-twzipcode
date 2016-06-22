@@ -19,7 +19,7 @@ module.exports = {
   entry: {
     main: [
       'webpack/hot/only-dev-server',
-      './src/containers/TWzipcodeApp.js'
+      './src/index.js'
     ],
     example: [
       'webpack/hot/only-dev-server',
@@ -35,15 +35,15 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/',
-      'react-twzipcode': './containers/App.js'
+      styles: __dirname + '/src/styles',
+      mixins: __dirname + '/src/mixins',
+      components: __dirname + '/src/components/',
+      'react-twzipcode': './index.js'
     }
   },
   module: {
     loaders: [{
-      test: /\.(js|jsx)$/,
+      test: /\.js$/,
       exclude: /(node_modules)/,
       loader: 'react-hot!babel'
     }, {
@@ -66,5 +66,4 @@ module.exports = {
   eslint: {
     configFile: eslintrcPath
   }
-
 };

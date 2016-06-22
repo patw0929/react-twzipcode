@@ -1,43 +1,37 @@
-import React, { Component, PropTypes, findDOMNode } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class County extends Component {
-  constructor() {
-    super();
+export default class County extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
   }
 
   static propTypes = {
-    actions: PropTypes.object,
     changeCounty: PropTypes.func,
     className: PropTypes.string,
     data: PropTypes.array,
-    defaultValue: PropTypes.string,
-    handleChangeCounty: PropTypes.func,
-    name: PropTypes.string
-  }
+    value: PropTypes.string,
+    fieldName: PropTypes.string,
+  };
 
-  onChange() {
-    let currentCounty = findDOMNode(this).value;
-    this.props.actions.changeCounty(currentCounty);
-
-    this.props.handleChangeCounty.call(this);
+  onChange(e) {
+    const currentCounty = e.target.value;
+    this.props.changeCounty(currentCounty);
   }
 
   render() {
-    let counties = this.props.data.map((value, key) => {
-      return (
-        <option key={key} value={value}>{value}</option>
-      );
-    });
+    const counties = this.props.data.map((value, key) =>
+      <option key={key} value={value}>{value}</option>);
 
     return (
-      <select name={this.props.name}
-              className={this.props.className}
-              onChange={::this.onChange}
-              value={this.props.defaultValue}>
+      <select name={this.props.fieldName}
+        className={this.props.className}
+        onChange={this.onChange}
+        value={this.props.value}
+      >
         {counties}
       </select>
     );
   }
 }
-
-export default County;
