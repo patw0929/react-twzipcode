@@ -35,10 +35,10 @@ npm install react-twzipcode --save
 
 ## Usage
 
-```
-var TWzipcode = require('react-twzipcode');
+```javascript
+import TWzipcode from 'react-twzipcode';
 
-<TWzipcode css={['county-sel', 'district-sel', 'zipcode']}>Example</TWzipcode>
+<TWzipcode css={['county-sel', 'district-sel', 'zipcode']} />
 ```
 
 ### Properties
@@ -67,5 +67,5 @@ npm run lint
 
 MIT
 
-Copyright (c) 2015 patw.
+Copyright (c) 2015-2016 [patw](https://patw.me).
 
