@@ -1,35 +1,28 @@
-import React, { Component, PropTypes, findDOMNode } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Data from './Data';
 
-class ZipCode extends Component {
-  constructor() {
-    super();
-  }
-
+export default class ZipCode extends Component {
   static propTypes = {
-    actions: PropTypes.object,
     changeZipcode: PropTypes.func,
     className: PropTypes.string,
-    data: PropTypes.string,
-    handleChangeZipcode: PropTypes.func,
-    name: PropTypes.string
-  }
+    value: PropTypes.string,
+    fieldName: PropTypes.string
+  };
 
-  componentDidUpdate() {
-    findDOMNode(this).value = this.props.data;
-  }
+  onChange(e) {
+    const zipCode = e.target.value;
+    let i;
+    let j;
 
-  onChange() {
-    let zipCode = findDOMNode(this).value,
-      i, j;
+    this.props.changeZipcode(zipCode);
 
     if (zipCode.length === 3) {
       for (i in Data) {
-        if (Data.hasOwnProperty(i)) {
+        if ({}.hasOwnProperty.call(Data, i)) {
           for (j in Data[i]) {
-            if (Data[i].hasOwnProperty(j)) {
+            if ({}.hasOwnProperty.call(Data[i], j)) {
               if (zipCode === Data[i][j]) {
-                this.props.actions.changeZipcode(zipCode);
+                this.props.changeZipcode(zipCode);
                 break;
               }
             }
@@ -37,17 +30,15 @@ class ZipCode extends Component {
         }
       }
     }
-
-    this.props.handleChangeZipcode.call(this);
   }
 
   render() {
     return (
       <input type="text" className={this.props.className}
-                         name={this.props.name}
-                         onChange={::this.onChange} />
+        name={this.props.fieldName}
+        value={this.props.value}
+        onChange={this.onChange.bind(this)}
+        maxLength="3" />
     );
   }
 }
-
-export default ZipCode;

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import TWzipcode from 'react-twzipcode';
 
-var App = React.createClass({
-  handleChange (data) {
+class App extends Component {
+  handleChange(data) {
     console.log(data);
-  },
-  render () {
+  }
+
+  render() {
     return (
       <div>
         <TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
-                   handleChangeCounty={this.handleChange}
-                   handleChangeDistrict={this.handleChange}
-                   handleChangeZipcode={this.handleChange} />
+          handleChangeCounty={this.handleChange.bind(this)}
+          handleChangeDistrict={this.handleChange.bind(this)}
+          handleChangeZipcode={this.handleChange.bind(this)}
+          detect={true} />
       </div>
     );
   }
-});
+}
 
-React.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
