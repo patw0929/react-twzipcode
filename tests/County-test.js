@@ -13,7 +13,8 @@ describe('County', () => {
       <TWzipcode css={['form-control county-sel',
                        'form-control district-sel',
                        'form-control zipcode']}
-                 zipcodeValue={'251'} />
+        zipcodeValue={'251'}
+      />
     );
   });
 
@@ -23,12 +24,12 @@ describe('County', () => {
   });
 
   it('set county className', () => {
-    let county = TestUtils.findRenderedComponentWithType(component, County);
+    const county = TestUtils.findRenderedComponentWithType(component, County);
     expect(findDOMNode(county).className).to.equal('form-control county-sel');
   });
 
   it('change county value', () => {
-    let select = TestUtils.findRenderedComponentWithType(component, County);
+    const select = TestUtils.findRenderedComponentWithType(component, County);
     findDOMNode(select).value = '高雄市';
     TestUtils.Simulate.change(findDOMNode(select));
     expect(select.props.value).to.equal('高雄市');

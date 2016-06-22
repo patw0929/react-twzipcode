@@ -15,8 +15,12 @@ export default class TWzipcodeApp extends Component {
       district: '',
       districts: [],
       zipcode: '',
-      zipcodePlaceholder: ''
+      zipcodePlaceholder: '',
     };
+
+    this.changeCounty = this.changeCounty.bind(this);
+    this.changeDistrict = this.changeDistrict.bind(this);
+    this.changeZipcode = this.changeZipcode.bind(this);
   }
 
   static propTypes = {
@@ -32,7 +36,7 @@ export default class TWzipcodeApp extends Component {
     handleChangeZipcode: PropTypes.func,
     zipcodeFieldName: PropTypes.string,
     zipcodeValue: PropTypes.string,
-    zipcodePlaceholder: PropTypes.string
+    zipcodePlaceholder: PropTypes.string,
   };
 
   static defaultProps = {
@@ -44,15 +48,15 @@ export default class TWzipcodeApp extends Component {
     districtValue: '',
     zipcodeName: 'zipcode',
     zipcodeValue: '',
-    googleMapsKey: ''
+    googleMapsKey: '',
   };
 
   componentWillMount() {
     let county;
-    let counties = Object.keys(Data);
+    const counties = Object.keys(Data);
     let district;
-    let districts = [];
-    let zipcode;
+    const districts = [];
+    let zipcode = '';
 
     if (this.props.countyValue === '') {
       county = counties[0];
@@ -60,7 +64,7 @@ export default class TWzipcodeApp extends Component {
       county = this.props.countyValue;
     }
 
-    for (let d in Data[county]) {
+    for (const d in Data[county]) {
       if ({}.hasOwnProperty.call(Data[county], d)) {
         districts.push(d);
       }
@@ -83,7 +87,7 @@ export default class TWzipcodeApp extends Component {
       counties,
       district,
       districts,
-      zipcode
+      zipcode,
     });
 
     if (this.props.detect) {
@@ -97,7 +101,7 @@ export default class TWzipcodeApp extends Component {
 
   changeCounty(value) {
     const districts = [];
-    for (let district in Data[value]) {
+    for (const district in Data[value]) {
       if ({}.hasOwnProperty.call(Data[value], district)) {
         districts.push(district);
       }
@@ -107,7 +111,7 @@ export default class TWzipcodeApp extends Component {
       county: value,
       district: districts[0],
       zipcode: Data[value][districts[0]],
-      districts
+      districts,
     }, () => {
       if (typeof this.props.handleChangeCounty === 'function') {
         this.props.handleChangeCounty(this.state);
@@ -120,7 +124,7 @@ export default class TWzipcodeApp extends Component {
 
     this.setState({
       district: value,
-      zipcode
+      zipcode,
     }, () => {
       if (typeof this.props.handleChangeDistrict === 'function') {
         this.props.handleChangeDistrict(this.state);
@@ -133,9 +137,9 @@ export default class TWzipcodeApp extends Component {
     let district = '';
 
     if (value.length === 3) {
-      for (let i in Data) {
+      for (const i in Data) {
         if ({}.hasOwnProperty.call(Data, i)) {
-          for (let j in Data[i]) {
+          for (const j in Data[i]) {
             if ({}.hasOwnProperty.call(Data[i], j)) {
               if (value === Data[i][j]) {
                 county = i;
@@ -152,7 +156,7 @@ export default class TWzipcodeApp extends Component {
           districts: Object.keys(Data[county]),
           zipcode: value,
           county,
-          district
+          district,
         }, () => {
           if (typeof this.props.handleChangeZipcode === 'function') {
             this.props.handleChangeZipcode(this.state);
@@ -161,7 +165,7 @@ export default class TWzipcodeApp extends Component {
       }
     } else {
       this.setState({
-        zipcode: value
+        zipcode: value,
       });
     }
   }
@@ -171,7 +175,7 @@ export default class TWzipcodeApp extends Component {
     const options = {
       maximumAge: 600000,
       timeout: 10000,
-      enableHighAccuracy: false
+      enableHighAccuracy: false,
     };
 
     if (!geolocation) {
@@ -188,7 +192,7 @@ export default class TWzipcodeApp extends Component {
         const sendData = {
           sensor: false,
           latlng: latlng.join(','),
-          key: this.props.googleMapsKey
+          key: this.props.googleMapsKey,
         };
 
         if (sendData) {
@@ -229,18 +233,21 @@ export default class TWzipcodeApp extends Component {
           className={this.props.css[0]}
           data={this.state.counties}
           value={this.state.county}
-          changeCounty={this.changeCounty.bind(this)} />
+          changeCounty={this.changeCounty}
+        />
         <District fieldName={this.props.districtFieldName}
           className={this.props.css[1]}
           data={this.state.districts}
           value={this.state.district}
-          changeDistrict={this.changeDistrict.bind(this)} />
+          changeDistrict={this.changeDistrict}
+        />
         <ZipCode
           name={this.props.zipcodeFieldName}
           className={this.props.css[2]}
           value={this.state.zipcode}
           placeholder={this.props.zipcodePlaceholder}
-          changeZipcode={this.changeZipcode.bind(this)} />
+          changeZipcode={this.changeZipcode}
+        />
       </div>
     );
   }

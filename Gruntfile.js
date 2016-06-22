@@ -1,29 +1,28 @@
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
+const mountFolder = (connect, dir) =>
+  connect.static(require('path').resolve(dir));
 
-var webpackExampleConfig = require('./webpack.example.config.js'),
-    webpackDistConfig = require('./webpack.dist.config.js'),
-    webpackDevConfig = require('./webpack.config.js');
+const webpackExampleConfig = require('./webpack.example.config.js');
+const webpackDistConfig = require('./webpack.dist.config.js');
+const webpackDevConfig = require('./webpack.config.js');
 
-module.exports = function (grunt) {
+module.exports = (grunt) => {
   // Let *load-grunt-tasks* require everything
   require('load-grunt-tasks')(grunt);
 
   // Read configuration from package.json
-  var folders = {
+  const folders = {
     src: 'src',
     test: 'test',
     dist: 'dist',
-    example: 'example'
+    example: 'example',
   };
 
   grunt.initConfig({
-    folders: folders,
+    folders,
 
     webpack: {
       example: webpackExampleConfig,
-      dist: webpackDistConfig
+      dist: webpackDistConfig,
     },
 
     'webpack-dev-server': {
@@ -33,41 +32,39 @@ module.exports = function (grunt) {
         host: '0.0.0.0',
         webpack: webpackDevConfig,
         publicPath: '/assets/',
-        contentBase: './<%= folders.src %>/'
+        contentBase: './<%= folders.src %>/',
       },
 
       start: {
-        keepAlive: true
-      }
+        keepAlive: true,
+      },
     },
 
     connect: {
       options: {
-        port: 8000
+        port: 8000,
       },
 
       example: {
         options: {
           keepalive: true,
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, folders.example)
-            ];
-          }
-        }
-      }
+          middleware: (connect) =>
+            [mountFolder(connect, folders.example)]
+          ,
+        },
+      },
     },
 
     open: {
       options: {
-        delay: 500
+        delay: 500,
       },
       dev: {
-        path: 'http://localhost:<%= connect.options.port %>/webpack-dev-server/'
+        path: 'http://localhost:<%= connect.options.port %>/webpack-dev-server/',
       },
       example: {
-        path: 'http://localhost:<%= connect.options.port %>/'
-      }
+        path: 'http://localhost:<%= connect.options.port %>/',
+      },
     },
 
     copy: {
@@ -78,40 +75,40 @@ module.exports = function (grunt) {
             flatten: true,
             expand: true,
             src: [
-              '<%= folders.src %>/index.html'
+              '<%= folders.src %>/index.html',
             ],
             dest: '<%= folders.example %>/',
-            filter: 'isFile'
+            filter: 'isFile',
           },
           {
             flatten: true,
             expand: true,
             src: [
-              '<%= folders.src %>/libphonenumber.js'
+              '<%= folders.src %>/libphonenumber.js',
             ],
             dest: '<%= folders.dist %>/',
-            filter: 'isFile'
+            filter: 'isFile',
           },
           {
             flatten: true,
             expand: true,
             src: '<%= folders.dist %>/*.png',
-            dest: '<%= folders.example %>/'
+            dest: '<%= folders.example %>/',
           },
           {
             flatten: true,
             expand: true,
             src: '<%= folders.src %>/styles/*',
-            dest: '<%= folders.dist %>/styles/'
+            dest: '<%= folders.dist %>/styles/',
           },
           {
             flatten: true,
             expand: true,
             src: '<%= folders.src %>/images/*',
-            dest: '<%= folders.dist %>/images/'
-          }
-        ]
-      }
+            dest: '<%= folders.dist %>/images/',
+          },
+        ],
+      },
     },
 
     clean: {
@@ -119,38 +116,39 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= folders.example %>'
-          ]
-        }]
+            '<%= folders.example %>',
+          ],
+        }],
       },
       dist: {
         files: [{
           dot: true,
           src: [
-            '<%= folders.dist %>'
-          ]
-        }]
-      }
+            '<%= folders.dist %>',
+          ],
+        }],
+      },
     },
 
     'gh-pages': {
       options: {
-        base: 'example'
+        base: 'example',
       },
-      src: ['**']
-    }
+      src: ['**'],
+    },
   });
 
   grunt.registerTask('publish:examples', ['gh-pages']);
 
-  grunt.registerTask('serve', function (target) {
+  grunt.registerTask('serve', (target) => {
     if (target === 'example') {
-      return grunt.task.run(['clean:dist', 'webpack:dist', 'build', 'open:example', 'connect:example']);
+      return grunt.task.run(['clean:dist', 'webpack:dist',
+        'build', 'open:example', 'connect:example']);
     }
 
-    grunt.task.run([
+    return grunt.task.run([
       'open:dev',
-      'webpack-dev-server'
+      'webpack-dev-server',
     ]);
   });
 

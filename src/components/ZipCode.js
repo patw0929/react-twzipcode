@@ -2,12 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import Data from './Data';
 
 export default class ZipCode extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+  }
+
   static propTypes = {
     changeZipcode: PropTypes.func,
     className: PropTypes.string,
     value: PropTypes.string,
     fieldName: PropTypes.string,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
   };
 
   onChange(e) {
@@ -38,9 +44,10 @@ export default class ZipCode extends Component {
       <input type="text" className={this.props.className}
         name={this.props.fieldName}
         value={this.props.value}
-        onChange={this.onChange.bind(this)}
+        onChange={this.onChange}
         placeholder={this.props.placeholder}
-        maxLength="3" />
+        maxLength="3"
+      />
     );
   }
 }
