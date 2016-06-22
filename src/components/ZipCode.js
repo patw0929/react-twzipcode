@@ -6,7 +6,8 @@ export default class ZipCode extends Component {
     changeZipcode: PropTypes.func,
     className: PropTypes.string,
     value: PropTypes.string,
-    fieldName: PropTypes.string
+    fieldName: PropTypes.string,
+    placeholder: PropTypes.string
   };
 
   onChange(e) {
@@ -38,6 +39,7 @@ export default class ZipCode extends Component {
         name={this.props.fieldName}
         value={this.props.value}
         onChange={this.onChange.bind(this)}
+        placeholder={this.props.placeholder}
         maxLength="3" />
     );
   }

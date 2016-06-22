@@ -14,7 +14,8 @@ export default class TWzipcodeApp extends Component {
       counties: Object.keys(Data),
       district: '',
       districts: [],
-      zipcode: ''
+      zipcode: '',
+      zipcodePlaceholder: ''
     };
   }
 
@@ -30,7 +31,8 @@ export default class TWzipcodeApp extends Component {
     handleChangeDistrict: PropTypes.func,
     handleChangeZipcode: PropTypes.func,
     zipcodeFieldName: PropTypes.string,
-    zipcodeValue: PropTypes.string
+    zipcodeValue: PropTypes.string,
+    zipcodePlaceholder: PropTypes.string
   };
 
   static defaultProps = {
@@ -237,6 +239,7 @@ export default class TWzipcodeApp extends Component {
           name={this.props.zipcodeFieldName}
           className={this.props.css[2]}
           value={this.state.zipcode}
+          placeholder={this.props.zipcodePlaceholder}
           changeZipcode={this.changeZipcode.bind(this)} />
       </div>
     );
