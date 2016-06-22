@@ -20,7 +20,7 @@ module.exports = {
   },
 
   entry: {
-    main: './src/containers/App.js'
+    main: './src/index.js'
   },
 
   externals: {
@@ -46,15 +46,15 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/'
+      styles: path.join(__dirname, '/src/styles'),
+      mixins: path.join(__dirname, '/src/mixins'),
+      components: path.join(__dirname, '/src/components/')
     }
   },
 
   module: {
     loaders: [{
-      test: /\.js(x)?$/,
+      test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel'
     }, {

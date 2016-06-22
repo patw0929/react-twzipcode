@@ -7,9 +7,9 @@
 'use strict';
 
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-
   output: {
     publicPath: './assets/',
     path: 'example/assets/',
@@ -41,16 +41,14 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/',
+      components: path.join(__dirname, '/src/components/'),
       'react-twzipcode': '../dist/main.js'
     }
   },
 
   module: {
     loaders: [{
-      test: /\.js(x)?$/,
+      test: /\.js$/,
       exclude: /(node_modules)/,
       loader: 'babel'
     }, {
