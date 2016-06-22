@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8">
-  <title>React-TWzipcode</title>
+  <title>react-twzipcode</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
   <meta name="author" content="patw" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="page-header">
-          <h1>React-TWzipcode</h1>
+          <h1>react-twzipcode</h1>
         </div>
 
         <h2>範例</h2>
@@ -50,28 +50,28 @@
 
         <h2>語法</h2>
 
-        <pre><code class="javascript">'use strict';
+        <pre><code class="javascript">import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import TWzipcode from 'react-twzipcode';
 
-var React = require('react');
-var TWzipcode = require('react-twzipcode');
-
-var App = React.createClass({
+class App extends Component {
   handleChange (data) {
     console.log(data);
-  },
-  render () {
+  }
+
+  render() {
     return (
       &lt;div&gt;
         &lt;TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
-                   handleChangeCounty={this.handleChange}
-                   handleChangeDistrict={this.handleChange}
-                   handleChangeZipcode={this.handleChange} /&gt;
+          handleChangeCounty={this.handleChange}
+          handleChangeDistrict={this.handleChange}
+          handleChangeZipcode={this.handleChange} /&gt;
       &lt;/div&gt;
     );
   }
-});
+}
 
-React.render(&lt;App /&gt;, document.getElementById('app'));
+ReactDOM.render(&lt;App /&gt;, document.getElementById('app'));
 </code></pre>
 
         <hr>
@@ -89,12 +89,12 @@ React.render(&lt;App /&gt;, document.getElementById('app'));
             </thead>
             <tbody>
               <tr>
-                <th scope="row">countyName</th>
+                <th scope="row">countyFieldName</th>
                 <td><code>county</code></td>
-                <td>縣市下拉選單表單名稱</td>
+                <td>縣市下拉選單欄位名稱</td>
               </tr>
               <tr>
-                <th scope="row">countySel</th>
+                <th scope="row">countyValue</th>
                 <td><code>''</code></td>
                 <td>縣市預設值</td>
               </tr>
@@ -114,39 +114,44 @@ React.render(&lt;App /&gt;, document.getElementById('app'));
                 <td>Google API 金鑰。若您達到 Geocoder 的每日限制用量，可透過購買來提高用量，同時需設置金鑰與打開 <code>detect</code>。</td>
               </tr>
               <tr>
-                <th scope="row">districtName</th>
+                <th scope="row">districtFieldName</th>
                 <td><code>district</code></td>
-                <td>區域下拉選單表單名稱</td>
+                <td>區域下拉選單欄位名稱</td>
               </tr>
               <tr>
-                <th scope="row">districtSel</th>
+                <th scope="row">districtValue</th>
                 <td><code>''</code></td>
                 <td>區域預設值</td>
               </tr>
               <tr>
-                <th scope="row">zipcodeName</th>
+                <th scope="row">zipcodeFieldName</th>
                 <td><code>zipcode</code></td>
-                <td>郵遞區號文字框表單名稱</td>
+                <td>郵遞區號文字框欄位名稱</td>
               </tr>
               <tr>
-                <th scope="row">zipcodeSel</th>
+                <th scope="row">zipcodeValue</th>
                 <td><code>''</code></td>
-                <td>郵遞區號預設值（優先權高於 <code>countySel</code> 及 <code>districtSel</code>）</td>
+                <td>郵遞區號預設值（優先權高於 <code>countyValue</code> 及 <code>districtValue</code>）</td>
               </tr>
               <tr>
                 <th scope="row">handleChangeCounty</th>
-                <td><code>undefined</code></td>
+                <td><code>null</code></td>
                 <td>選擇縣市後的 callback</td>
               </tr>
               <tr>
                 <th scope="row">handleChangeDistrict</th>
-                <td><code>undefined</code></td>
+                <td><code>null</code></td>
                 <td>選擇鄉鎮市區後的 callback</td>
               </tr>
               <tr>
                 <th scope="row">handleChangeZipcode</th>
-                <td><code>undefined</code></td>
+                <td><code>null</code></td>
                 <td>改變郵遞區號後的 callback</td>
+              </tr>
+              <tr>
+                <th scope="row">zipcodePlaceholder</th>
+                <td><code>''</code></td>
+                <td>郵遞區號欄位的 placeholder</td>
               </tr>
             </tbody>
           </table>
@@ -168,14 +173,14 @@ React.render(&lt;App /&gt;, document.getElementById('app'));
     <div class="row footer">
       <div class="col-md-12">
         <ul class="list-inline">
-          <li><a href="https://github.com/patw0929/React-TWzipcode" target="_blank">GitHub</a></li>
+          <li><a href="https://github.com/patw0929/react-twzipcode" target="_blank">GitHub</a></li>
           <li><a href="http://patw.me" target="_blank">@patw</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <script src="https://fb.me/react-0.13.3.js"></script>
+  <script src="https://fb.me/react-15.1.0.min.js"></script>
   <script>
     __REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
   </script>

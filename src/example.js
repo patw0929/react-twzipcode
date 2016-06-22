@@ -14,7 +14,8 @@ class App extends Component {
           handleChangeCounty={this.handleChange.bind(this)}
           handleChangeDistrict={this.handleChange.bind(this)}
           handleChangeZipcode={this.handleChange.bind(this)}
-          detect={true} />
+          detect={true}
+          zipcodePlaceholder={'郵遞區號'} />
       </div>
     );
   }
