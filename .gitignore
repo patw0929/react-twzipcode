@@ -32,3 +32,5 @@ example/dist
 
 .grunt/
 npm-debug.log
+
+coverage
