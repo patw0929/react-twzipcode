@@ -1,11 +1,12 @@
-import '../.auto_mock_off';
-import React, { findDOMNode } from 'react/addons';
-import TWzipcode from '../src/containers/App';
+import React from 'react';
+import { findDOMNode } from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+import { expect } from 'chai';
+import TWzipcode from '../src';
 import ZipCode from '../src/components/ZipCode';
 
 describe('ZipCode', () => {
-  var TestUtils = React.addons.TestUtils;
-  var component;
+  let component;
 
   beforeEach(() => {
     component = TestUtils.renderIntoDocument(
@@ -18,18 +19,18 @@ describe('ZipCode', () => {
 
   it('set zipcode as 200', () => {
     let input = TestUtils.findRenderedComponentWithType(component, ZipCode);
-    expect(findDOMNode(input).value).toEqual('200');
+    expect(findDOMNode(input).value).to.equal('200');
   });
 
   it('set zipcode className', () => {
     let input = TestUtils.findRenderedComponentWithType(component, ZipCode);
-    expect(findDOMNode(input).className).toEqual('form-control zipcode');
+    expect(findDOMNode(input).className).to.equal('form-control zipcode');
   });
 
   it('change zipcode value', () => {
     let input = TestUtils.findRenderedComponentWithType(component, ZipCode);
     findDOMNode(input).value = '300';
     TestUtils.Simulate.change(findDOMNode(input));
-    expect(input.props.data).toEqual('300');
+    expect(input.props.value).to.equal('300');
   });
 });
