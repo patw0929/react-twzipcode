@@ -13,7 +13,8 @@
     "url": "https://github.com/patw0929/react-twzipcode/issues"
   },
   "dependencies": {
-    "react": "^0.13.3"
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
   "devDependencies": {
     "babel-core": "^5.8.3",
