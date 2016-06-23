@@ -40,15 +40,16 @@ export default class TWzipcodeApp extends Component {
   };
 
   static defaultProps = {
-    countyName: 'county',
+    countyFieldName: 'county',
     countyValue: '',
     css: ['county-sel', 'district-sel', 'zipcode'],
     detect: false,
-    districtName: 'district',
+    districtFieldName: 'district',
     districtValue: '',
-    zipcodeName: 'zipcode',
-    zipcodeValue: '',
     googleMapsKey: '',
+    zipcodeFieldName: 'zipcode',
+    zipcodeValue: '',
+    zipcodePlaceholder: '',
   };
 
   componentWillMount() {
