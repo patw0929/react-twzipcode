@@ -1,6 +1,6 @@
 {
   "name": "react-twzipcode",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Rewrite jQuery-TWzipcode in React.js.",
   "main": "dist/main.js",
   "author": "patw",
