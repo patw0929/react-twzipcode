@@ -9,6 +9,8 @@ var webpack = require('webpack'),
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 
 module.exports = {
+  debug: false,
+  devtool: false,
   watch: true,
   output: {
     publicPath: './',
