@@ -13,8 +13,6 @@
     "url": "https://github.com/patw0929/react-twzipcode/issues"
   },
   "dependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.3.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
@@ -30,6 +28,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "6.4.3",
     "coveralls": "^2.11.9",
+    "chai": "^3.5.0",
+    "mocha": "^2.3.4",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "6.0.2",
     "eslint-plugin-react": "4.1.0",
