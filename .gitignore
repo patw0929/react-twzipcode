@@ -1,36 +1,50 @@
-# Logs
-logs
-*.log
+### SublimeText ###
+*.sublime-workspace
 
-# Runtime data
-pids
-*.pid
-*.seed
+### JetBrains ###
+.idea
 
-# Coverage tools
-lib-cov
-coverage
-coverage.html
-.cover*
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
 
-# Dependency directory
-node_modules
+# Thumbnails
+._*
 
-# Example build directory
-example/dist
-.publish
+# Visual Studio
+*.history
+*.vscode
+.vscode/
+.history/
 
-# Editor and other tmp files
-*.swp
-*.un~
-*.iml
-*.ipr
-*.iws
-*.sublime-*
-.idea/
-*.DS_Store
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
 
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# App specific
+
+dist/
+node_modules/
+.tmp
+/src/main.js
 .grunt/
+.history/
 npm-debug.log
-
-coverage
+build/**
+dist/**
+example/**
+test/**
+coverage/*
