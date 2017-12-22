@@ -17,7 +17,12 @@ global.document = doc;
 global.window = doc.defaultView;
 
 // Allow for things like window.location
-global.navigator = window.navigator;
+const mockGeolocation = {
+  getCurrentPosition: jest.fn(),
+  watchPosition: jest.fn()
+};
+
+global.navigator.geolocation = mockGeolocation;
 
 const DATE_TO_USE = new Date('2017-05-11');
 const _Date = Date;

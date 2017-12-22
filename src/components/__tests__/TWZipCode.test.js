@@ -47,4 +47,15 @@ describe('TWzipcode', function () { // eslint-disable-line func-names
     subject.setProps({ zipcodeValue: '251' });
     expect(subject.props().handleChangeZipcode).toBeCalled();
   });
+
+  it('should call getCurrentPosition function', () => {
+    this.params = {
+      ...this.params,
+      detect: true,
+    };
+
+    this.makeSubject();
+
+    expect(global.navigator.geolocation.getCurrentPosition).toBeCalled();
+  });
 });
