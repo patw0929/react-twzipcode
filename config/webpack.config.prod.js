@@ -105,23 +105,6 @@ module.exports = {
         loader: 'babel-loader',
         options: require('./babel.prod')
       },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'sass-loader?outputStyle=expanded',
-          ],
-        }),
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-        ],
-      },
     ]
   },
 

@@ -84,21 +84,6 @@ module.exports = {
         loader: 'babel-loader',
         options: require('./babel.dev') // eslint-disable-line global-require
       },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader?sourceMap',
-          'css-loader',
-          'sass-loader?outputStyle=expanded',
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-        ],
-      },
     ]
   },
 
