@@ -1,192 +1,25 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <title>react-twzipcode</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-  <meta name="author" content="patw" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/tomorrow-night-eighties.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-  <style>
-    .county-sel, .district-sel, .zipcode {
-      display: inline-block;
-      margin-right: 5px;
-    }
-
-    .footer {
-      text-align: center;
-      margin: 20px auto;
-    }
-  </style>
-</head>
-<body>
-  <a href="https://github.com/patw0929/React-TWzipcode"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="page-header">
-          <h1>react-twzipcode</h1>
-        </div>
-
-        <h2>範例</h2>
-
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <form class="form-inline">
-              <main id="app" class="main"></main>
-            </form>
-          </div>
-        </div>
-
-        <hr>
-
-        <h2>安裝</h2>
-
-        <pre><code>npm install --save react-twzipcode</code></pre>
-
-        <hr>
-
-        <h2>語法</h2>
-
-        <pre><code class="javascript">import React, { Component } from 'react';
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><title>react-twzipcode</title><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="author" content="patw"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/tomorrow-night-eighties.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><style>.county-sel,.district-sel,.zipcode{display:inline-block;margin-right:5px}.footer{text-align:center;margin:20px auto}</style></head><body><a href="https://github.com/patw0929/React-TWzipcode"><img style="position:absolute;top:0;right:0;border:0;z-index:1" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a><div class="container-fluid"><div class="row"><div class="col-md-10 col-md-offset-1"><div class="page-header"><h1>react-twzipcode</h1></div><h2>範例</h2><div class="panel panel-default"><div class="panel-body"><form class="form-inline"><main id="app" class="main"></main></form></div></div><hr><h2>安裝</h2><pre><code>yarn add react-smartbanner</code></pre><p>或</p><pre><code>npm install --save react-twzipcode</code></pre><hr><h2>語法</h2><pre><code class="javascript">import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import TWzipcode from 'react-twzipcode';
 
 class App extends Component {
-  handleChange (data) {
+  handleChange = (data) =&gt; {
     console.log(data);
-  }
+  };
 
   render() {
     return (
       &lt;div&gt;
-        &lt;TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
+        &lt;TWzipcode
+          css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
           handleChangeCounty={this.handleChange}
           handleChangeDistrict={this.handleChange}
-          handleChangeZipcode={this.handleChange} /&gt;
+          handleChangeZipcode={this.handleChange}
+        /&gt;
       &lt;/div&gt;
     );
   }
 }
 
 ReactDOM.render(&lt;App /&gt;, document.getElementById('app'));
-</code></pre>
-
-        <hr>
-
-        <h2>參數</h2>
-
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">名稱</th>
-                <th scope="col">預設值</th>
-                <th scope="col">說明</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">countyFieldName</th>
-                <td><code>county</code></td>
-                <td>縣市下拉選單欄位名稱</td>
-              </tr>
-              <tr>
-                <th scope="row">countyValue</th>
-                <td><code>''</code></td>
-                <td>縣市預設值</td>
-              </tr>
-              <tr>
-                <th scope="row">css</th>
-                <td><code>['county-sel', 'district-sel', 'zipcode']</code></td>
-                <td>表單元件樣式名稱。依序是「縣市」、「區域」、「郵遞區號」。</td>
-              </tr>
-              <tr>
-                <th scope="row">detect</th>
-                <td><code>false</code></td>
-                <td>是否開啟 Geolocation 偵測經緯度並轉換為行政區的功能</td>
-              </tr>
-              <tr>
-                <th scope="row">googleMapsKey</th>
-                <td><code>''</code></td>
-                <td>Google API 金鑰。若您達到 Geocoder 的每日限制用量，可透過購買來提高用量，同時需設置金鑰與打開 <code>detect</code>。</td>
-              </tr>
-              <tr>
-                <th scope="row">districtFieldName</th>
-                <td><code>district</code></td>
-                <td>區域下拉選單欄位名稱</td>
-              </tr>
-              <tr>
-                <th scope="row">districtValue</th>
-                <td><code>''</code></td>
-                <td>區域預設值</td>
-              </tr>
-              <tr>
-                <th scope="row">zipcodeFieldName</th>
-                <td><code>zipcode</code></td>
-                <td>郵遞區號文字框欄位名稱</td>
-              </tr>
-              <tr>
-                <th scope="row">zipcodeValue</th>
-                <td><code>''</code></td>
-                <td>郵遞區號預設值（優先權高於 <code>countyValue</code> 及 <code>districtValue</code>）</td>
-              </tr>
-              <tr>
-                <th scope="row">handleChangeCounty</th>
-                <td><code>null</code></td>
-                <td>選擇縣市後的 callback</td>
-              </tr>
-              <tr>
-                <th scope="row">handleChangeDistrict</th>
-                <td><code>null</code></td>
-                <td>選擇鄉鎮市區後的 callback</td>
-              </tr>
-              <tr>
-                <th scope="row">handleChangeZipcode</th>
-                <td><code>null</code></td>
-                <td>改變郵遞區號後的 callback</td>
-              </tr>
-              <tr>
-                <th scope="row">zipcodePlaceholder</th>
-                <td><code>''</code></td>
-                <td>郵遞區號欄位的 placeholder</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <hr>
-
-          <h2>特別感謝</h2>
-
-          <p>jQuery 版作者 <a href="https://github.com/essoduke" target="_blank">@essoduke</a> 以及其專案 <a href="http://app.essoduke.org/twzipcode/" target="_blank">jQuery-TWzipcode</a>。</p>
-
-          <hr>
-
-          <h2>授權</h2>
-
-          <p>MIT 授權。</p>
-        </div>
-      </div>
-    </div>
-    <div class="row footer">
-      <div class="col-md-12">
-        <ul class="list-inline">
-          <li><a href="https://github.com/patw0929/react-twzipcode" target="_blank">GitHub</a></li>
-          <li><a href="http://patw.me" target="_blank">@patw</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-  <script>
-    __REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
-  </script>
-  <script src="assets/example.js"></script>
-
-  <script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+</code></pre><hr><h2>參數</h2><div class="table-responsive"><table class="table table-bordered"><thead><tr><th scope="col">名稱</th><th scope="col">預設值</th><th scope="col">說明</th></tr></thead><tbody><tr><th scope="row">countyFieldName</th><td><code>county</code></td><td>縣市下拉選單欄位名稱</td></tr><tr><th scope="row">countyValue</th><td><code>''</code></td><td>縣市預設值</td></tr><tr><th scope="row">css</th><td><code>['county-sel', 'district-sel', 'zipcode']</code></td><td>表單元件樣式名稱。依序是「縣市」、「區域」、「郵遞區號」。</td></tr><tr><th scope="row">detect</th><td><code>false</code></td><td>是否開啟 Geolocation 偵測經緯度並轉換為行政區的功能</td></tr><tr><th scope="row">googleMapsKey</th><td><code>''</code></td><td>Google API 金鑰。若您達到 Geocoder 的每日限制用量，可透過購買來提高用量，同時需設置金鑰與打開 <code>detect</code>。</td></tr><tr><th scope="row">districtFieldName</th><td><code>district</code></td><td>區域下拉選單欄位名稱</td></tr><tr><th scope="row">districtValue</th><td><code>''</code></td><td>區域預設值</td></tr><tr><th scope="row">zipcodeFieldName</th><td><code>zipcode</code></td><td>郵遞區號文字框欄位名稱</td></tr><tr><th scope="row">zipcodeValue</th><td><code>''</code></td><td>郵遞區號預設值（優先權高於 <code>countyValue</code> 及 <code>districtValue</code>）</td></tr><tr><th scope="row">handleChangeCounty</th><td><code>null</code></td><td>選擇縣市後的 callback</td></tr><tr><th scope="row">handleChangeDistrict</th><td><code>null</code></td><td>選擇鄉鎮市區後的 callback</td></tr><tr><th scope="row">handleChangeZipcode</th><td><code>null</code></td><td>改變郵遞區號後的 callback</td></tr><tr><th scope="row">zipcodePlaceholder</th><td><code>''</code></td><td>郵遞區號欄位的 placeholder</td></tr></tbody></table><hr><h2>特別感謝</h2><p>jQuery 版作者 <a href="https://github.com/essoduke" target="_blank">@essoduke</a> 以及其專案 <a href="http://app.essoduke.org/twzipcode/" target="_blank">jQuery-TWzipcode</a>。</p><hr><h2>授權</h2><p>MIT 授權。</p></div></div></div><div class="row footer"><div class="col-md-12"><ul class="list-inline"><li><a href="https://github.com/patw0929/react-twzipcode" target="_blank">GitHub</a></li><li><a href="https://patw.me" target="_blank">@patw</a></li></ul></div></div></div><script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script><script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/prop-types/prop-types.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script type="text/javascript" src="example.js"></script></body></html>

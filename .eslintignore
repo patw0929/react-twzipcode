@@ -1,7 +1,10 @@
-.publish/*
 dist/*
-example/assets/*
-lib/*
+example/*
+test/*
 node_modules/*
-coverage/*
-webpack.*
+config/*
+scripts/*
+Gruntfile.js
+package.json
+webpack.*.js
+src/utils/zipData.js

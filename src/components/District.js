@@ -1,34 +1,38 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-export default class District extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onChange = this.onChange.bind(this);
-  }
-
+export default class District extends PureComponent {
   static propTypes = {
     changeDistrict: PropTypes.func,
     className: PropTypes.string,
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.string),
     value: PropTypes.string,
     fieldName: PropTypes.string,
   };
 
-  onChange(e) {
+  onChange = (e) => {
     const currentDistrict = e.target.value;
+
     this.props.changeDistrict(currentDistrict);
-  }
+  };
 
   render() {
-    const districts = this.props.data.map((value, key) =>
-      <option key={key} value={value}>{value}</option>);
+    const {
+      data,
+      fieldName,
+      className,
+      value,
+    } = this.props;
+
+    const districts = data.map((v) =>
+      <option key={ v } value={ v }>{v}</option>);
 
     return (
-      <select name={this.props.fieldName}
-        className={this.props.className}
-        onChange={this.onChange}
-        value={this.props.value}
+      <select
+        name={ fieldName }
+        className={ className }
+        onChange={ this.onChange }
+        value={ value }
       >
         {districts}
       </select>

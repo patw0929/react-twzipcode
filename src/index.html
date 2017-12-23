@@ -44,6 +44,10 @@
 
         <h2>安裝</h2>
 
+        <pre><code>yarn add react-smartbanner</code></pre>
+
+        <p>或</p>
+
         <pre><code>npm install --save react-twzipcode</code></pre>
 
         <hr>
@@ -55,17 +59,19 @@ import ReactDOM from 'react-dom';
 import TWzipcode from 'react-twzipcode';
 
 class App extends Component {
-  handleChange (data) {
+  handleChange = (data) =&gt; {
     console.log(data);
-  }
+  };
 
   render() {
     return (
       &lt;div&gt;
-        &lt;TWzipcode css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
+        &lt;TWzipcode
+          css={['form-control county-sel', 'form-control district-sel', 'form-control zipcode']}
           handleChangeCounty={this.handleChange}
           handleChangeDistrict={this.handleChange}
-          handleChangeZipcode={this.handleChange} /&gt;
+          handleChangeZipcode={this.handleChange}
+        /&gt;
       &lt;/div&gt;
     );
   }
@@ -174,18 +180,15 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('app'));
       <div class="col-md-12">
         <ul class="list-inline">
           <li><a href="https://github.com/patw0929/react-twzipcode" target="_blank">GitHub</a></li>
-          <li><a href="http://patw.me" target="_blank">@patw</a></li>
+          <li><a href="https://patw.me" target="_blank">@patw</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-  <script>
-    __REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
-  </script>
-  <script src="assets/example.js"></script>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
 
   <script>hljs.initHighlightingOnLoad();</script>
 </body>
