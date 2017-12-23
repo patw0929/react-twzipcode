@@ -124,7 +124,10 @@
     "react",
     "react-component",
     "taiwan",
-    "zipcode"
+    "zipcode",
+    "郵遞區號",
+    "台灣",
+    "中華郵政"
   ],
   "author": "patw <patw.hi@gmail.com> (https://patw.me/)",
   "engines": {
