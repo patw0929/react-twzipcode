@@ -258,7 +258,7 @@ export default class TWzipcodeApp extends PureComponent {
           changeDistrict={ this.changeDistrict }
         />
         <ZipCode
-          name={ zipcodeFieldName }
+          fieldName={ zipcodeFieldName }
           className={ css[2] }
           value={ zipcode }
           placeholder={ zipcodePlaceholder }
